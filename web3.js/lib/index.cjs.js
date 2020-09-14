@@ -2,7 +2,6 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const bitcoin = require('bitcoinjs-lib')
 var _classCallCheck = require('@babel/runtime/helpers/classCallCheck');
 var _createClass = require('@babel/runtime/helpers/createClass');
 var _defineProperty = require('@babel/runtime/helpers/defineProperty');
@@ -11,6 +10,7 @@ var _regeneratorRuntime = require('@babel/runtime/regenerator');
 var _asyncToGenerator = require('@babel/runtime/helpers/asyncToGenerator');
 var BN = require('bn.js');
 var bs58 = require('bs58');
+var cryptoHash = require('crypto-hash');
 var BufferLayout = require('buffer-layout');
 var _toConsumableArray = require('@babel/runtime/helpers/toConsumableArray');
 var _slicedToArray = require('@babel/runtime/helpers/slicedToArray');
@@ -139,7 +139,7 @@ var PublicKey = /*#__PURE__*/function () {
               case 0:
                 buffer = Buffer.concat([fromPublicKey.toBuffer(), Buffer.from(seed), programId.toBuffer()]);
                 _context.next = 3;
-                return bitcoin.crypto.sha256(new Uint8Array(buffer));
+                return cryptoHash.sha256(new Uint8Array(buffer));
 
               case 3:
                 hash = _context.sent;
@@ -178,7 +178,7 @@ var PublicKey = /*#__PURE__*/function () {
                 });
                 buffer = Buffer.concat([buffer, programId.toBuffer(), Buffer.from('ProgramDerivedAddress')]);
                 _context2.next = 5;
-                return bitcoin.crypto.sha256(new Uint8Array(buffer));
+                return cryptoHash.sha256(new Uint8Array(buffer));
 
               case 5:
                 hash = _context2.sent;

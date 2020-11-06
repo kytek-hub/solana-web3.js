@@ -20,6 +20,7 @@ import type {Blockhash} from './blockhash';
 import type {FeeCalculator} from './fee-calculator';
 import type {Account} from './account';
 import type {TransactionSignature} from './transaction';
+import type {CompiledInstruction} from './message';
 import {AgentManager} from './agent-manager';
 
 export const BLOCKHASH_CACHE_TIMEOUT_MS = 30 * 1000;
@@ -367,11 +368,47 @@ const SimulatedTransactionResponseValidator = jsonRpcResultAndContext(
   }),
 );
 
+type PartiallyDecodedInnerInstruction = {
+  index: number,
+  instructions: PartiallyDecodedInstruction[],
+};
+
+type ParsedInnerInstruction = {
+  index: number,
+  instructions: (ParsedInstruction | PartiallyDecodedInnerInstruction)[],
+};
+
+/**
+ * Metadata for a parsed confirmed transaction on the ledger
+ *
+ * @typedef {Object} ParsedConfirmedTransactionMeta
+ * @property {number} fee The fee charged for processing the transaction
+ * @property {Array<ParsedInnerInstruction>} innerInstructions An array of cross program invoked parsed instructions
+ * @property {Array<number>} preBalances The balances of the transaction accounts before processing
+ * @property {Array<number>} postBalances The balances of the transaction accounts after processing
+ * @property {Array<string>} logMessages An array of program log messages emitted during a transaction
+ * @property {object|null} err The error result of transaction processing
+ */
+type ParsedConfirmedTransactionMeta = {
+  fee: number,
+  innerInstructions?: ParsedInnerInstruction[],
+  preBalances: Array<number>,
+  postBalances: Array<number>,
+  logMessages?: Array<string>,
+  err: TransactionError | null,
+};
+
+type CompiledInnerInstruction = {
+  index: number,
+  instructions: CompiledInstruction[],
+};
+
 /**
  * Metadata for a confirmed transaction on the ledger
  *
  * @typedef {Object} ConfirmedTransactionMeta
  * @property {number} fee The fee charged for processing the transaction
+ * @property {Array<CompiledInnerInstruction>} innerInstructions An array of cross program invoked instructions
  * @property {Array<number>} preBalances The balances of the transaction accounts before processing
  * @property {Array<number>} postBalances The balances of the transaction accounts after processing
  * @property {Array<string>} logMessages An array of program log messages emitted during a transaction
@@ -379,6 +416,7 @@ const SimulatedTransactionResponseValidator = jsonRpcResultAndContext(
  */
 type ConfirmedTransactionMeta = {
   fee: number,
+  innerInstructions?: CompiledInnerInstruction[],
   preBalances: Array<number>,
   postBalances: Array<number>,
   logMessages?: Array<string>,
@@ -478,7 +516,7 @@ type ParsedTransaction = {
 type ParsedConfirmedTransaction = {
   slot: number,
   transaction: ParsedTransaction,
-  meta: ConfirmedTransactionMeta | null,
+  meta: ParsedConfirmedTransactionMeta | null,
 };
 
 /**
@@ -502,11 +540,30 @@ type ConfirmedBlock = {
   rewards: Array<{
     pubkey: string,
     lamports: number,
+    postBalance: number | null,
+    rewardType: string | null,
   }>,
+};
+
+/**
+ * A performance sample
+ *
+ * @typedef {Object} PerfSample
+ * @property {number} slot Slot number of sample
+ * @property {number} numTransactions Number of transactions in a sample window
+ * @property {number} numSlots Number of slots in a sample window
+ * @property {number} samplePeriodSecs Sample window in seconds
+ */
+type PerfSample = {
+  slot: number,
+  numTransactions: number,
+  numSlots: number,
+  samplePeriodSecs: number,
 };
 
 function createRpcRequest(url: string, useHttps: boolean): RpcRequest {
   const agentManager = new AgentManager(useHttps);
+
   const server = jayson(async (request, callback) => {
     const agent = agentManager.requestStart();
     const options = {
@@ -1107,9 +1164,61 @@ const ConfirmedTransactionMetaResult = struct.union([
   struct.pick({
     err: TransactionErrorResult,
     fee: 'number',
+    innerInstructions: struct.union([
+      struct.array([
+        struct({
+          index: 'number',
+          instructions: struct.array([
+            struct({
+              accounts: struct.array(['number']),
+              data: 'string',
+              programIdIndex: 'number',
+            }),
+          ]),
+        }),
+      ]),
+      'null',
+      'undefined',
+    ]),
     preBalances: struct.array(['number']),
     postBalances: struct.array(['number']),
-    logMessages: struct.union([struct.array(['string']), 'undefined']),
+    logMessages: struct.union([struct.array(['string']), 'null', 'undefined']),
+  }),
+]);
+/**
+ * @private
+ */
+const ParsedConfirmedTransactionMetaResult = struct.union([
+  'null',
+  struct.pick({
+    err: TransactionErrorResult,
+    fee: 'number',
+    innerInstructions: struct.union([
+      struct.array([
+        struct({
+          index: 'number',
+          instructions: struct.array([
+            struct.union([
+              struct({
+                accounts: struct.array(['string']),
+                data: 'string',
+                programId: 'string',
+              }),
+              struct({
+                parsed: 'any',
+                program: 'string',
+                programId: 'string',
+              }),
+            ]),
+          ]),
+        }),
+      ]),
+      'null',
+      'undefined',
+    ]),
+    preBalances: struct.array(['number']),
+    postBalances: struct.array(['number']),
+    logMessages: struct.union([struct.array(['string']), 'null', 'undefined']),
   }),
 ]);
 
@@ -1135,6 +1244,8 @@ export const GetConfirmedBlockRpcResult = jsonRpcResult(
           struct({
             pubkey: 'string',
             lamports: 'number',
+            postBalance: struct.union(['number', 'undefined']),
+            rewardType: struct.union(['string', 'undefined']),
           }),
         ]),
       ]),
@@ -1165,7 +1276,7 @@ const GetParsedConfirmedTransactionRpcResult = jsonRpcResult(
     struct.pick({
       slot: 'number',
       transaction: ParsedConfirmedTransactionResult,
-      meta: ConfirmedTransactionMetaResult,
+      meta: ParsedConfirmedTransactionMetaResult,
     }),
   ]),
 );
@@ -1180,6 +1291,20 @@ const GetRecentBlockhashAndContextRpcResult = jsonRpcResultAndContext(
       lamportsPerSignature: 'number',
     }),
   }),
+);
+
+/*
+ * Expected JSON RPC response for "getRecentPerformanceSamples" message
+ */
+const GetRecentPerformanceSamplesRpcResult = jsonRpcResult(
+  struct.array([
+    struct.pick({
+      slot: 'number',
+      numTransactions: 'number',
+      numSlots: 'number',
+      samplePeriodSecs: 'number',
+    }),
+  ]),
 );
 
 /**
@@ -1411,6 +1536,7 @@ export type ConfirmedSignatureInfo = {
  * A connection to a fullnode JSON RPC endpoint
  */
 export class Connection {
+  _rpcEndpoint: string;
   _rpcRequest: RpcRequest;
   _rpcWebSocket: RpcWebSocketClient;
   _rpcWebSocketConnected: boolean = false;
@@ -1452,6 +1578,8 @@ export class Connection {
    * @param commitment optional default commitment level
    */
   constructor(endpoint: string, commitment: ?Commitment) {
+    this._rpcEndpoint = endpoint;
+
     let url = urlParse(endpoint);
     const useHttps = url.protocol === 'https:';
 
@@ -2035,8 +2163,6 @@ export class Connection {
 
   /**
    * Confirm the transaction identified by the specified signature.
-   *
-   * If `commitment` is not specified, default to 'max'.
    */
   async confirmTransaction(
     signature: TransactionSignature,
@@ -2052,7 +2178,7 @@ export class Connection {
     assert(decodedSignature.length === 64, 'signature has invalid length');
 
     const start = Date.now();
-    const subscriptionCommitment: Commitment = commitment || 'max';
+    const subscriptionCommitment = commitment || this.commitment;
 
     let subscriptionId;
     let response: RpcResponseAndContext<SignatureResult> | null = null;
@@ -2326,6 +2452,30 @@ export class Connection {
   }
 
   /**
+   * Fetch recent performance samples
+   * @return {Promise<Array<PerfSample>>}
+   */
+  async getRecentPerformanceSamples(
+    limit: ?number,
+  ): Promise<Array<PerfSample>> {
+    const args = this._buildArgs(limit ? [limit] : []);
+    const unsafeRes = await this._rpcRequest(
+      'getRecentPerformanceSamples',
+      args,
+    );
+
+    const res = GetRecentPerformanceSamplesRpcResult(unsafeRes);
+    if (res.error) {
+      throw new Error(
+        'failed to get recent performance samples: ' + res.error.message,
+      );
+    }
+
+    assert(typeof res.result !== 'undefined');
+    return res.result;
+  }
+
+  /**
    * Fetch the fee calculator for a recent blockhash from the cluster, return with context
    */
   async getFeeCalculatorForBlockhash(
@@ -2383,10 +2533,11 @@ export class Connection {
    */
   async getConfirmedBlock(slot: number): Promise<ConfirmedBlock> {
     const unsafeRes = await this._rpcRequest('getConfirmedBlock', [slot]);
-    const {result, error} = GetConfirmedBlockRpcResult(unsafeRes);
-    if (error) {
-      throw new Error('failed to get confirmed block: ' + result.error.message);
+    const res = GetConfirmedBlockRpcResult(unsafeRes);
+    if (res.error) {
+      throw new Error('failed to get confirmed block: ' + res.error.message);
     }
+    const result = res.result;
     assert(typeof result !== 'undefined');
     if (!result) {
       throw new Error('Confirmed block ' + slot + ' not found');
@@ -2685,11 +2836,12 @@ export class Connection {
 
     const signData = transaction.serializeMessage();
     const wireTransaction = transaction._serialize(signData);
-    const encodedTransaction = bs58.encode(wireTransaction);
-    const args = [encodedTransaction];
+    const encodedTransaction = wireTransaction.toString('base64');
+    const config: any = {encoding: 'base64'};
+    const args = [encodedTransaction, config];
 
     if (signers) {
-      args.push({sigVerify: true});
+      config.sigVerify = true;
     }
 
     const unsafeRes = await this._rpcRequest('simulateTransaction', args);
@@ -2758,7 +2910,7 @@ export class Connection {
     rawTransaction: Buffer | Uint8Array | Array<number>,
     options: ?SendOptions,
   ): Promise<TransactionSignature> {
-    const encodedTransaction = bs58.encode(toBuffer(rawTransaction));
+    const encodedTransaction = toBuffer(rawTransaction).toString('base64');
     const result = await this.sendEncodedTransaction(
       encodedTransaction,
       options,
@@ -2768,13 +2920,14 @@ export class Connection {
 
   /**
    * Send a transaction that has already been signed, serialized into the
-   * wire format, and encoded as a base58 string
+   * wire format, and encoded as a base64 string
    */
   async sendEncodedTransaction(
     encodedTransaction: string,
     options: ?SendOptions,
   ): Promise<TransactionSignature> {
-    const args = [encodedTransaction];
+    const config: any = {encoding: 'base64'};
+    const args = [encodedTransaction, config];
     const skipPreflight = options && options.skipPreflight;
     const preflightCommitment = options && options.preflightCommitment;
 
@@ -2785,14 +2938,22 @@ export class Connection {
     }
 
     if (skipPreflight) {
-      args.push({skipPreflight});
+      config.skipPreflight = skipPreflight;
     } else if (preflightCommitment) {
-      args.push({preflightCommitment});
+      config.preflightCommitment = preflightCommitment;
     }
 
     const unsafeRes = await this._rpcRequest('sendTransaction', args);
     const res = SendTransactionRpcResult(unsafeRes);
     if (res.error) {
+      if (res.error.data) {
+        const logs = res.error.data.logs;
+        if (logs && Array.isArray(logs)) {
+          const traceIndent = '\n    ';
+          const logTrace = traceIndent + logs.join(traceIndent);
+          console.error(res.error.message, logTrace);
+        }
+      }
       throw new Error('failed to send transaction: ' + res.error.message);
     }
     assert(typeof res.result !== 'undefined');

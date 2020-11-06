@@ -37,6 +37,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/message.js~Message.html">Message</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/nonce-account.js~NonceAccount.html">NonceAccount</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/publickey.js~PublicKey.html">PublicKey</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/secp256k1-program.js~Secp256k1Program.html">Secp256k1Program</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/stake-program.js~Authorized.html">Authorized</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/stake-program.js~Lockup.html">Lockup</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/stake-program.js~StakeInstruction.html">StakeInstruction</a></span></span></li>
@@ -55,6 +56,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-publicKey">publicKey</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-rustString">rustString</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-uint64">uint64</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-constructEthPubkey">constructEthPubkey</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DESTROY_TIMEOUT_MS">DESTROY_TIMEOUT_MS</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-BPF_LOADER_DEPRECATED_PROGRAM_ID">BPF_LOADER_DEPRECATED_PROGRAM_ID</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-BPF_LOADER_PROGRAM_ID">BPF_LOADER_PROGRAM_ID</a></span></span></li>
@@ -62,11 +64,13 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-GetConfirmedBlockRpcResult">GetConfirmedBlockRpcResult</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-LAMPORTS_PER_SOL">LAMPORTS_PER_SOL</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NONCE_ACCOUNT_LENGTH">NONCE_ACCOUNT_LENGTH</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SEED_LENGTH">MAX_SEED_LENGTH</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-STAKE_CONFIG_ID">STAKE_CONFIG_ID</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-STAKE_INSTRUCTION_LAYOUTS">STAKE_INSTRUCTION_LAYOUTS</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-StakeAuthorizationLayout">StakeAuthorizationLayout</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SYSTEM_INSTRUCTION_LAYOUTS">SYSTEM_INSTRUCTION_LAYOUTS</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SYSVAR_CLOCK_PUBKEY">SYSVAR_CLOCK_PUBKEY</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SYSVAR_INSTRUCTIONS_PUBKEY">SYSVAR_INSTRUCTIONS_PUBKEY</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SYSVAR_RECENT_BLOCKHASHES_PUBKEY">SYSVAR_RECENT_BLOCKHASHES_PUBKEY</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SYSVAR_RENT_PUBKEY">SYSVAR_RENT_PUBKEY</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SYSVAR_REWARDS_PUBKEY">SYSVAR_REWARDS_PUBKEY</a></span></span></li>
@@ -95,11 +99,13 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-LeaderSchedule">LeaderSchedule</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ParsedAccountData">ParsedAccountData</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ParsedConfirmedTransaction">ParsedConfirmedTransaction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ParsedConfirmedTransactionMeta">ParsedConfirmedTransactionMeta</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ParsedInstruction">ParsedInstruction</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ParsedMessage">ParsedMessage</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ParsedMessageAccount">ParsedMessageAccount</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ParsedMessageAccount">ParsedMessageAccount</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ParsedTransaction">ParsedTransaction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-PerfSample">PerfSample</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-RpcResponseAndContext">RpcResponseAndContext</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-SendOptions">SendOptions</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-SignatureResult">SignatureResult</a></span></span></li>
@@ -119,6 +125,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-CompiledInstruction">CompiledInstruction</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-MessageArgs">MessageArgs</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-MessageHeader">MessageHeader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-CreateSecp256k1InstructionWithPrivateKeyParams">CreateSecp256k1InstructionWithPrivateKeyParams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-CreateSecp256k1InstructionWithPublicKeyParams">CreateSecp256k1InstructionWithPublicKeyParams</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-AuthorizeStakeParams">AuthorizeStakeParams</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-AuthorizeWithSeedStakeParams">AuthorizeWithSeedStakeParams</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-CreateStakeAccountParams">CreateStakeAccountParams</a></span></span></li>
@@ -164,13 +172,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Transaction} from &apos;<span><a href="file/src/transaction.js.html#lineNumber139">@solana/web3</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Transaction} from &apos;<span><a href="file/src/transaction.js.html#lineNumber141">@solana/web3</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/transaction.js.html#lineNumber139">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/transaction.js.html#lineNumber141">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -313,7 +321,7 @@
     <td>
       <span class="access" data-ice="access">public</span>
       
-      <span class="kind" data-ice="kind">get</span>
+      
       
       <span class="override" data-ice="override"></span>
     </td>
@@ -323,13 +331,13 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/transaction.js~Transaction.html#instance-get-feePayer">feePayer</a></span></span><span class="code" data-ice="signature">: <span><a href="class/src/publickey.js~PublicKey.html">PublicKey</a></span> | <span>nullliteral</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/transaction.js~Transaction.html#instance-member-feePayer">feePayer</a></span></span><span class="code" data-ice="signature">: <span><a href="class/src/publickey.js~PublicKey.html">PublicKey</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>The transaction fee payer (first signer) </p>
+        <div data-ice="description"><p>The transaction fee payer </p>
 </div>
       </div>
     </td>
@@ -381,7 +389,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/transaction.js~Transaction.html#instance-member-nonceInfo">nonceInfo</a></span></span><span class="code" data-ice="signature">: <span><a href="typedef/index.html#static-typedef-NonceInformation">NonceInformation</a></span> | <span>nullliteral</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/transaction.js~Transaction.html#instance-member-nonceInfo">nonceInfo</a></span></span><span class="code" data-ice="signature">: <span><a href="typedef/index.html#static-typedef-NonceInformation">NonceInformation</a></span></span>
         </p>
       </div>
       <div>
@@ -410,7 +418,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/transaction.js~Transaction.html#instance-member-recentBlockhash">recentBlockhash</a></span></span><span class="code" data-ice="signature">: <span><a href="typedef/index.html#static-typedef-Blockhash">Blockhash</a></span> | <span>nullliteral</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/transaction.js~Transaction.html#instance-member-recentBlockhash">recentBlockhash</a></span></span><span class="code" data-ice="signature">: <span><a href="typedef/index.html#static-typedef-Blockhash">Blockhash</a></span></span>
         </p>
       </div>
       <div>
@@ -682,7 +690,9 @@
         </p>
       </div>
       <div>
-        
+        <div class="deprecated" data-ice="deprecated">this method was deprecated. Deprecated since v0.84.0. Only the fee payer needs to be
+specified and it can be set in the Transaction constructor or with the
+`feePayer` property. </div>
         
         <div data-ice="description"><p>Specify the public keys which will be used to sign the Transaction.</p>
 </div>
@@ -772,7 +782,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber582">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber651">source</a></span></span>
     </span>
   </h3>
 
@@ -844,7 +854,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber600">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber669">source</a></span></span>
     </span>
   </h3>
 
@@ -925,7 +935,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber185">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber182">source</a></span></span>
     </span>
   </h3>
 
@@ -977,25 +987,25 @@
 <div data-ice="memberDetails"><h2 data-ice="title">Public Members</h2>
 
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-get-feePayer">
+  <h3 data-ice="anchor" id="instance-member-feePayer">
     <span class="access" data-ice="access">public</span>
     
-    <span class="kind" data-ice="kind">get</span>
     
     
     
-    <span class="code" data-ice="name">feePayer</span><span class="code" data-ice="signature">: <span><a href="class/src/publickey.js~PublicKey.html">PublicKey</a></span> | <span>nullliteral</span></span>
+    
+    <span class="code" data-ice="name">feePayer</span><span class="code" data-ice="signature">: <span><a href="class/src/publickey.js~PublicKey.html">PublicKey</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber159">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber161">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>The transaction fee payer (first signer) </p>
+  <div data-ice="description"><p>The transaction fee payer </p>
 </div>
 
   
@@ -1032,7 +1042,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber169">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber166">source</a></span></span>
     </span>
   </h3>
 
@@ -1072,11 +1082,11 @@
     
     
     
-    <span class="code" data-ice="name">nonceInfo</span><span class="code" data-ice="signature">: <span><a href="typedef/index.html#static-typedef-NonceInformation">NonceInformation</a></span> | <span>nullliteral</span></span>
+    <span class="code" data-ice="name">nonceInfo</span><span class="code" data-ice="signature">: <span><a href="typedef/index.html#static-typedef-NonceInformation">NonceInformation</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber180">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber177">source</a></span></span>
     </span>
   </h3>
 
@@ -1117,18 +1127,18 @@ Nonce hash instead of a recentBlockhash. Must be populated by the caller </p>
     
     
     
-    <span class="code" data-ice="name">recentBlockhash</span><span class="code" data-ice="signature">: <span><a href="typedef/index.html#static-typedef-Blockhash">Blockhash</a></span> | <span>nullliteral</span></span>
+    <span class="code" data-ice="name">recentBlockhash</span><span class="code" data-ice="signature">: <span><a href="typedef/index.html#static-typedef-Blockhash">Blockhash</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber174">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber171">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>A recent transaction id.  Must be populated by the caller </p>
+  <div data-ice="description"><p>A recent transaction id. Must be populated by the caller </p>
 </div>
 
   
@@ -1165,7 +1175,7 @@ Nonce hash instead of a recentBlockhash. Must be populated by the caller </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber149">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber151">source</a></span></span>
     </span>
   </h3>
 
@@ -1209,7 +1219,7 @@ Nonce hash instead of a recentBlockhash. Must be populated by the caller </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber144">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber146">source</a></span></span>
     </span>
   </h3>
 
@@ -1257,7 +1267,7 @@ Nonce hash instead of a recentBlockhash. Must be populated by the caller </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber192">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber189">source</a></span></span>
     </span>
   </h3>
 
@@ -1329,7 +1339,7 @@ Nonce hash instead of a recentBlockhash. Must be populated by the caller </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber460">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber521">source</a></span></span>
     </span>
   </h3>
 
@@ -1337,7 +1347,8 @@ Nonce hash instead of a recentBlockhash. Must be populated by the caller </p>
   
   
   <div data-ice="description"><p>Add an externally created signature to a transaction. The public key
-must correspond to a public key that was previously provided to <code>setSigners</code>. </p>
+must correspond to either the fee payer or a signer account in the transaction
+instructions. </p>
 </div>
 
   
@@ -1396,7 +1407,7 @@ must correspond to a public key that was previously provided to <code>setSigners
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber216">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber213">source</a></span></span>
     </span>
   </h3>
 
@@ -1452,7 +1463,7 @@ must correspond to a public key that was previously provided to <code>setSigners
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber437">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber483">source</a></span></span>
     </span>
   </h3>
 
@@ -1460,7 +1471,8 @@ must correspond to a public key that was previously provided to <code>setSigners
   
   
   <div data-ice="description"><p>Partially sign a transaction with the specified accounts. All accounts must
-correspond to a public key that was previously provided to <code>setSigners</code>.</p>
+correspond to either the fee payer or a signer account in the transaction
+instructions.</p>
 <p>All the caveats from the <code>sign</code> method apply to <code>partialSign</code> </p>
 </div>
 
@@ -1514,7 +1526,7 @@ correspond to a public key that was previously provided to <code>setSigners</cod
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber503">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber572">source</a></span></span>
     </span>
   </h3>
 
@@ -1586,7 +1598,7 @@ correspond to a public key that was previously provided to <code>setSigners</cod
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber366">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber401">source</a></span></span>
     </span>
   </h3>
 
@@ -1642,12 +1654,14 @@ correspond to a public key that was previously provided to <code>setSigners</cod
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber376">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber415">source</a></span></span>
     </span>
   </h3>
 
   
-  
+  <div class="deprecated" data-ice="deprecated">this method was deprecated. Deprecated since v0.84.0. Only the fee payer needs to be
+specified and it can be set in the Transaction constructor or with the
+`feePayer` property. </div>
   
   <div data-ice="description"><p>Specify the public keys which will be used to sign the Transaction.
 The first signer will be used as the transaction fee payer account.</p>
@@ -1704,7 +1718,7 @@ The first signer will be used as the transaction fee payer account.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber407">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber448">source</a></span></span>
     </span>
   </h3>
 
@@ -1713,8 +1727,9 @@ The first signer will be used as the transaction fee payer account.</p>
   
   <div data-ice="description"><p>Sign the Transaction with the specified accounts. Multiple signatures may
 be applied to a Transaction. The first signature is considered &quot;primary&quot;
-and is used when testing for Transaction confirmation. The first signer
-will be used as the transaction fee payer account.</p>
+and is used identify and confirm transactions.</p>
+<p>If the Transaction <code>feePayer</code> is not set, the first signer will be used
+as the transaction fee payer account.</p>
 <p>Transaction fields should not be modified after the first call to <code>sign</code>,
 as doing so may invalidate the signature and cause the Transaction to be
 rejected.</p>
@@ -1771,7 +1786,7 @@ rejected.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber476">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/transaction.js.html#lineNumber545">source</a></span></span>
     </span>
   </h3>
 

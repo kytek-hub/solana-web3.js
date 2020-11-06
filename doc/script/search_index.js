@@ -78,6 +78,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "@solana/web3~max_seed_length",
+    "variable/index.html#static-variable-MAX_SEED_LENGTH",
+    "<span>MAX_SEED_LENGTH</span> <span class=\"search-result-import-path\">@solana/web3</span>",
+    "variable"
+  ],
+  [
     "@solana/web3~message",
     "class/src/message.js~Message.html",
     "<span>Message</span> <span class=\"search-result-import-path\">@solana/web3</span>",
@@ -132,6 +138,12 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "@solana/web3~sysvar_instructions_pubkey",
+    "variable/index.html#static-variable-SYSVAR_INSTRUCTIONS_PUBKEY",
+    "<span>SYSVAR_INSTRUCTIONS_PUBKEY</span> <span class=\"search-result-import-path\">@solana/web3</span>",
+    "variable"
+  ],
+  [
     "@solana/web3~sysvar_recent_blockhashes_pubkey",
     "variable/index.html#static-variable-SYSVAR_RECENT_BLOCKHASHES_PUBKEY",
     "<span>SYSVAR_RECENT_BLOCKHASHES_PUBKEY</span> <span class=\"search-result-import-path\">@solana/web3</span>",
@@ -154,6 +166,12 @@ window.esdocSearchIndex = [
     "variable/index.html#static-variable-SYSVAR_STAKE_HISTORY_PUBKEY",
     "<span>SYSVAR_STAKE_HISTORY_PUBKEY</span> <span class=\"search-result-import-path\">@solana/web3</span>",
     "variable"
+  ],
+  [
+    "@solana/web3~secp256k1program",
+    "class/src/secp256k1-program.js~Secp256k1Program.html",
+    "<span>Secp256k1Program</span> <span class=\"search-result-import-path\">@solana/web3</span>",
+    "class"
   ],
   [
     "@solana/web3~stakeauthorizationlayout",
@@ -231,6 +249,12 @@ window.esdocSearchIndex = [
     "@solana/web3~clusterapiurl",
     "function/index.html#static-function-clusterApiUrl",
     "<span>clusterApiUrl</span> <span class=\"search-result-import-path\">@solana/web3</span>",
+    "function"
+  ],
+  [
+    "@solana/web3~constructethpubkey",
+    "function/index.html#static-function-constructEthPubkey",
+    "<span>constructEthPubkey</span> <span class=\"search-result-import-path\">@solana/web3</span>",
     "function"
   ],
   [
@@ -930,6 +954,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/connection.js~connection#getrecentperformancesamples",
+    "class/src/connection.js~Connection.html#instance-method-getRecentPerformanceSamples",
+    "src/connection.js~Connection#getRecentPerformanceSamples",
+    "method"
+  ],
+  [
     "src/connection.js~connection#getsignaturestatus",
     "class/src/connection.js~Connection.html#instance-method-getSignatureStatus",
     "src/connection.js~Connection#getSignatureStatus",
@@ -1170,6 +1200,12 @@ window.esdocSearchIndex = [
     "typedef"
   ],
   [
+    "src/connection.js~parsedconfirmedtransactionmeta",
+    "typedef/index.html#static-typedef-ParsedConfirmedTransactionMeta",
+    "src/connection.js~ParsedConfirmedTransactionMeta",
+    "typedef"
+  ],
+  [
     "src/connection.js~parsedinstruction",
     "typedef/index.html#static-typedef-ParsedInstruction",
     "src/connection.js~ParsedInstruction",
@@ -1197,6 +1233,12 @@ window.esdocSearchIndex = [
     "src/connection.js~parsedtransaction",
     "typedef/index.html#static-typedef-ParsedTransaction",
     "src/connection.js~ParsedTransaction",
+    "typedef"
+  ],
+  [
+    "src/connection.js~perfsample",
+    "typedef/index.html#static-typedef-PerfSample",
+    "src/connection.js~PerfSample",
     "typedef"
   ],
   [
@@ -1368,12 +1410,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/message.js~message#findsignerindex",
-    "class/src/message.js~Message.html#instance-method-findSignerIndex",
-    "src/message.js~Message#findSignerIndex",
-    "method"
-  ],
-  [
     "src/message.js~message#header",
     "class/src/message.js~Message.html#instance-member-header",
     "src/message.js~Message#header",
@@ -1504,6 +1540,42 @@ window.esdocSearchIndex = [
     "class/src/publickey.js~PublicKey.html#static-method-findProgramAddress",
     "src/publickey.js~PublicKey.findProgramAddress",
     "method"
+  ],
+  [
+    "src/secp256k1-program.js",
+    "file/src/secp256k1-program.js.html",
+    "src/secp256k1-program.js",
+    "file"
+  ],
+  [
+    "src/secp256k1-program.js~createsecp256k1instructionwithprivatekeyparams",
+    "typedef/index.html#static-typedef-CreateSecp256k1InstructionWithPrivateKeyParams",
+    "src/secp256k1-program.js~CreateSecp256k1InstructionWithPrivateKeyParams",
+    "typedef"
+  ],
+  [
+    "src/secp256k1-program.js~createsecp256k1instructionwithpublickeyparams",
+    "typedef/index.html#static-typedef-CreateSecp256k1InstructionWithPublicKeyParams",
+    "src/secp256k1-program.js~CreateSecp256k1InstructionWithPublicKeyParams",
+    "typedef"
+  ],
+  [
+    "src/secp256k1-program.js~secp256k1program.createinstructionwithprivatekey",
+    "class/src/secp256k1-program.js~Secp256k1Program.html#static-method-createInstructionWithPrivateKey",
+    "src/secp256k1-program.js~Secp256k1Program.createInstructionWithPrivateKey",
+    "method"
+  ],
+  [
+    "src/secp256k1-program.js~secp256k1program.createinstructionwithpublickey",
+    "class/src/secp256k1-program.js~Secp256k1Program.html#static-method-createInstructionWithPublicKey",
+    "src/secp256k1-program.js~Secp256k1Program.createInstructionWithPublicKey",
+    "method"
+  ],
+  [
+    "src/secp256k1-program.js~secp256k1program.programid",
+    "class/src/secp256k1-program.js~Secp256k1Program.html#static-get-programId",
+    "src/secp256k1-program.js~Secp256k1Program.programId",
+    "member"
   ],
   [
     "src/stake-program.js",
@@ -2023,7 +2095,7 @@ window.esdocSearchIndex = [
   ],
   [
     "src/transaction.js~transaction#feepayer",
-    "class/src/transaction.js~Transaction.html#instance-get-feePayer",
+    "class/src/transaction.js~Transaction.html#instance-member-feePayer",
     "src/transaction.js~Transaction#feePayer",
     "member"
   ],

@@ -1,7 +1,7 @@
 {
-  "coverage": "91.68%",
-  "expectCount": 361,
-  "actualCount": 331,
+  "coverage": "89.73%",
+  "expectCount": 380,
+  "actualCount": 341,
   "files": {
     "src/account.js": {
       "expectCount": 5,
@@ -32,15 +32,16 @@
       ]
     },
     "src/connection.js": {
-      "expectCount": 160,
-      "actualCount": 154,
+      "expectCount": 164,
+      "actualCount": 157,
       "undocumentLines": [
-        25,
-        261,
-        287,
-        314,
-        332,
-        363
+        26,
+        262,
+        288,
+        315,
+        333,
+        364,
+        1299
       ]
     },
     "src/fee-calculator.js": {
@@ -69,8 +70,8 @@
       "undocumentLines": []
     },
     "src/message.js": {
-      "expectCount": 11,
-      "actualCount": 10,
+      "expectCount": 10,
+      "actualCount": 9,
       "undocumentLines": [
         57
       ]
@@ -83,13 +84,26 @@
       ]
     },
     "src/publickey.js": {
-      "expectCount": 15,
-      "actualCount": 11,
+      "expectCount": 16,
+      "actualCount": 12,
       "undocumentLines": [
         9,
-        145,
-        189,
-        190
+        153,
+        197,
+        198
+      ]
+    },
+    "src/secp256k1-program.js": {
+      "expectCount": 11,
+      "actualCount": 4,
+      "undocumentLines": [
+        12,
+        14,
+        15,
+        16,
+        17,
+        45,
+        59
       ]
     },
     "src/stake-program.js": {
@@ -107,14 +121,15 @@
       "undocumentLines": []
     },
     "src/sysvar.js": {
-      "expectCount": 5,
+      "expectCount": 6,
       "actualCount": 0,
       "undocumentLines": [
         4,
         8,
         12,
         16,
-        20
+        20,
+        24
       ]
     },
     "src/timing.js": {
@@ -123,8 +138,8 @@
       "undocumentLines": []
     },
     "src/transaction.js": {
-      "expectCount": 32,
-      "actualCount": 31,
+      "expectCount": 35,
+      "actualCount": 34,
       "undocumentLines": [
         35
       ]

@@ -37,6 +37,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/message.js~Message.html">Message</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/nonce-account.js~NonceAccount.html">NonceAccount</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/publickey.js~PublicKey.html">PublicKey</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/secp256k1-program.js~Secp256k1Program.html">Secp256k1Program</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/stake-program.js~Authorized.html">Authorized</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/stake-program.js~Lockup.html">Lockup</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/stake-program.js~StakeInstruction.html">StakeInstruction</a></span></span></li>
@@ -55,6 +56,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-publicKey">publicKey</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-rustString">rustString</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-uint64">uint64</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-constructEthPubkey">constructEthPubkey</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DESTROY_TIMEOUT_MS">DESTROY_TIMEOUT_MS</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-BPF_LOADER_DEPRECATED_PROGRAM_ID">BPF_LOADER_DEPRECATED_PROGRAM_ID</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-BPF_LOADER_PROGRAM_ID">BPF_LOADER_PROGRAM_ID</a></span></span></li>
@@ -62,11 +64,13 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-GetConfirmedBlockRpcResult">GetConfirmedBlockRpcResult</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-LAMPORTS_PER_SOL">LAMPORTS_PER_SOL</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NONCE_ACCOUNT_LENGTH">NONCE_ACCOUNT_LENGTH</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SEED_LENGTH">MAX_SEED_LENGTH</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-STAKE_CONFIG_ID">STAKE_CONFIG_ID</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-STAKE_INSTRUCTION_LAYOUTS">STAKE_INSTRUCTION_LAYOUTS</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-StakeAuthorizationLayout">StakeAuthorizationLayout</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SYSTEM_INSTRUCTION_LAYOUTS">SYSTEM_INSTRUCTION_LAYOUTS</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SYSVAR_CLOCK_PUBKEY">SYSVAR_CLOCK_PUBKEY</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SYSVAR_INSTRUCTIONS_PUBKEY">SYSVAR_INSTRUCTIONS_PUBKEY</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SYSVAR_RECENT_BLOCKHASHES_PUBKEY">SYSVAR_RECENT_BLOCKHASHES_PUBKEY</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SYSVAR_RENT_PUBKEY">SYSVAR_RENT_PUBKEY</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SYSVAR_REWARDS_PUBKEY">SYSVAR_REWARDS_PUBKEY</a></span></span></li>
@@ -95,11 +99,13 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-LeaderSchedule">LeaderSchedule</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ParsedAccountData">ParsedAccountData</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ParsedConfirmedTransaction">ParsedConfirmedTransaction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ParsedConfirmedTransactionMeta">ParsedConfirmedTransactionMeta</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ParsedInstruction">ParsedInstruction</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ParsedMessage">ParsedMessage</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ParsedMessageAccount">ParsedMessageAccount</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ParsedMessageAccount">ParsedMessageAccount</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ParsedTransaction">ParsedTransaction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-PerfSample">PerfSample</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-RpcResponseAndContext">RpcResponseAndContext</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-SendOptions">SendOptions</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-SignatureResult">SignatureResult</a></span></span></li>
@@ -119,6 +125,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-CompiledInstruction">CompiledInstruction</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-MessageArgs">MessageArgs</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-MessageHeader">MessageHeader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-CreateSecp256k1InstructionWithPrivateKeyParams">CreateSecp256k1InstructionWithPrivateKeyParams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-CreateSecp256k1InstructionWithPublicKeyParams">CreateSecp256k1InstructionWithPublicKeyParams</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-AuthorizeStakeParams">AuthorizeStakeParams</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-AuthorizeWithSeedStakeParams">AuthorizeWithSeedStakeParams</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-CreateStakeAccountParams">CreateStakeAccountParams</a></span></span></li>
@@ -186,6 +194,7 @@ import type {Blockhash} from &apos;./blockhash&apos;;
 import type {FeeCalculator} from &apos;./fee-calculator&apos;;
 import type {Account} from &apos;./account&apos;;
 import type {TransactionSignature} from &apos;./transaction&apos;;
+import type {CompiledInstruction} from &apos;./message&apos;;
 import {AgentManager} from &apos;./agent-manager&apos;;
 
 export const BLOCKHASH_CACHE_TIMEOUT_MS = 30 * 1000;
@@ -533,11 +542,47 @@ const SimulatedTransactionResponseValidator = jsonRpcResultAndContext(
   }),
 );
 
+type PartiallyDecodedInnerInstruction = {
+  index: number,
+  instructions: PartiallyDecodedInstruction[],
+};
+
+type ParsedInnerInstruction = {
+  index: number,
+  instructions: (ParsedInstruction | PartiallyDecodedInnerInstruction)[],
+};
+
+/**
+ * Metadata for a parsed confirmed transaction on the ledger
+ *
+ * @typedef {Object} ParsedConfirmedTransactionMeta
+ * @property {number} fee The fee charged for processing the transaction
+ * @property {Array&lt;ParsedInnerInstruction&gt;} innerInstructions An array of cross program invoked parsed instructions
+ * @property {Array&lt;number&gt;} preBalances The balances of the transaction accounts before processing
+ * @property {Array&lt;number&gt;} postBalances The balances of the transaction accounts after processing
+ * @property {Array&lt;string&gt;} logMessages An array of program log messages emitted during a transaction
+ * @property {object|null} err The error result of transaction processing
+ */
+type ParsedConfirmedTransactionMeta = {
+  fee: number,
+  innerInstructions?: ParsedInnerInstruction[],
+  preBalances: Array&lt;number&gt;,
+  postBalances: Array&lt;number&gt;,
+  logMessages?: Array&lt;string&gt;,
+  err: TransactionError | null,
+};
+
+type CompiledInnerInstruction = {
+  index: number,
+  instructions: CompiledInstruction[],
+};
+
 /**
  * Metadata for a confirmed transaction on the ledger
  *
  * @typedef {Object} ConfirmedTransactionMeta
  * @property {number} fee The fee charged for processing the transaction
+ * @property {Array&lt;CompiledInnerInstruction&gt;} innerInstructions An array of cross program invoked instructions
  * @property {Array&lt;number&gt;} preBalances The balances of the transaction accounts before processing
  * @property {Array&lt;number&gt;} postBalances The balances of the transaction accounts after processing
  * @property {Array&lt;string&gt;} logMessages An array of program log messages emitted during a transaction
@@ -545,6 +590,7 @@ const SimulatedTransactionResponseValidator = jsonRpcResultAndContext(
  */
 type ConfirmedTransactionMeta = {
   fee: number,
+  innerInstructions?: CompiledInnerInstruction[],
   preBalances: Array&lt;number&gt;,
   postBalances: Array&lt;number&gt;,
   logMessages?: Array&lt;string&gt;,
@@ -644,7 +690,7 @@ type ParsedTransaction = {
 type ParsedConfirmedTransaction = {
   slot: number,
   transaction: ParsedTransaction,
-  meta: ConfirmedTransactionMeta | null,
+  meta: ParsedConfirmedTransactionMeta | null,
 };
 
 /**
@@ -668,11 +714,30 @@ type ConfirmedBlock = {
   rewards: Array&lt;{
     pubkey: string,
     lamports: number,
+    postBalance: number | null,
+    rewardType: string | null,
   }&gt;,
+};
+
+/**
+ * A performance sample
+ *
+ * @typedef {Object} PerfSample
+ * @property {number} slot Slot number of sample
+ * @property {number} numTransactions Number of transactions in a sample window
+ * @property {number} numSlots Number of slots in a sample window
+ * @property {number} samplePeriodSecs Sample window in seconds
+ */
+type PerfSample = {
+  slot: number,
+  numTransactions: number,
+  numSlots: number,
+  samplePeriodSecs: number,
 };
 
 function createRpcRequest(url: string, useHttps: boolean): RpcRequest {
   const agentManager = new AgentManager(useHttps);
+
   const server = jayson(async (request, callback) =&gt; {
     const agent = agentManager.requestStart();
     const options = {
@@ -1273,9 +1338,61 @@ const ConfirmedTransactionMetaResult = struct.union([
   struct.pick({
     err: TransactionErrorResult,
     fee: &apos;number&apos;,
+    innerInstructions: struct.union([
+      struct.array([
+        struct({
+          index: &apos;number&apos;,
+          instructions: struct.array([
+            struct({
+              accounts: struct.array([&apos;number&apos;]),
+              data: &apos;string&apos;,
+              programIdIndex: &apos;number&apos;,
+            }),
+          ]),
+        }),
+      ]),
+      &apos;null&apos;,
+      &apos;undefined&apos;,
+    ]),
     preBalances: struct.array([&apos;number&apos;]),
     postBalances: struct.array([&apos;number&apos;]),
-    logMessages: struct.union([struct.array([&apos;string&apos;]), &apos;undefined&apos;]),
+    logMessages: struct.union([struct.array([&apos;string&apos;]), &apos;null&apos;, &apos;undefined&apos;]),
+  }),
+]);
+/**
+ * @private
+ */
+const ParsedConfirmedTransactionMetaResult = struct.union([
+  &apos;null&apos;,
+  struct.pick({
+    err: TransactionErrorResult,
+    fee: &apos;number&apos;,
+    innerInstructions: struct.union([
+      struct.array([
+        struct({
+          index: &apos;number&apos;,
+          instructions: struct.array([
+            struct.union([
+              struct({
+                accounts: struct.array([&apos;string&apos;]),
+                data: &apos;string&apos;,
+                programId: &apos;string&apos;,
+              }),
+              struct({
+                parsed: &apos;any&apos;,
+                program: &apos;string&apos;,
+                programId: &apos;string&apos;,
+              }),
+            ]),
+          ]),
+        }),
+      ]),
+      &apos;null&apos;,
+      &apos;undefined&apos;,
+    ]),
+    preBalances: struct.array([&apos;number&apos;]),
+    postBalances: struct.array([&apos;number&apos;]),
+    logMessages: struct.union([struct.array([&apos;string&apos;]), &apos;null&apos;, &apos;undefined&apos;]),
   }),
 ]);
 
@@ -1301,6 +1418,8 @@ export const GetConfirmedBlockRpcResult = jsonRpcResult(
           struct({
             pubkey: &apos;string&apos;,
             lamports: &apos;number&apos;,
+            postBalance: struct.union([&apos;number&apos;, &apos;undefined&apos;]),
+            rewardType: struct.union([&apos;string&apos;, &apos;undefined&apos;]),
           }),
         ]),
       ]),
@@ -1331,7 +1450,7 @@ const GetParsedConfirmedTransactionRpcResult = jsonRpcResult(
     struct.pick({
       slot: &apos;number&apos;,
       transaction: ParsedConfirmedTransactionResult,
-      meta: ConfirmedTransactionMetaResult,
+      meta: ParsedConfirmedTransactionMetaResult,
     }),
   ]),
 );
@@ -1346,6 +1465,20 @@ const GetRecentBlockhashAndContextRpcResult = jsonRpcResultAndContext(
       lamportsPerSignature: &apos;number&apos;,
     }),
   }),
+);
+
+/*
+ * Expected JSON RPC response for &quot;getRecentPerformanceSamples&quot; message
+ */
+const GetRecentPerformanceSamplesRpcResult = jsonRpcResult(
+  struct.array([
+    struct.pick({
+      slot: &apos;number&apos;,
+      numTransactions: &apos;number&apos;,
+      numSlots: &apos;number&apos;,
+      samplePeriodSecs: &apos;number&apos;,
+    }),
+  ]),
 );
 
 /**
@@ -1577,6 +1710,7 @@ export type ConfirmedSignatureInfo = {
  * A connection to a fullnode JSON RPC endpoint
  */
 export class Connection {
+  _rpcEndpoint: string;
   _rpcRequest: RpcRequest;
   _rpcWebSocket: RpcWebSocketClient;
   _rpcWebSocketConnected: boolean = false;
@@ -1618,6 +1752,8 @@ export class Connection {
    * @param commitment optional default commitment level
    */
   constructor(endpoint: string, commitment: ?Commitment) {
+    this._rpcEndpoint = endpoint;
+
     let url = urlParse(endpoint);
     const useHttps = url.protocol === &apos;https:&apos;;
 
@@ -2201,8 +2337,6 @@ export class Connection {
 
   /**
    * Confirm the transaction identified by the specified signature.
-   *
-   * If `commitment` is not specified, default to &apos;max&apos;.
    */
   async confirmTransaction(
     signature: TransactionSignature,
@@ -2218,7 +2352,7 @@ export class Connection {
     assert(decodedSignature.length === 64, &apos;signature has invalid length&apos;);
 
     const start = Date.now();
-    const subscriptionCommitment: Commitment = commitment || &apos;max&apos;;
+    const subscriptionCommitment = commitment || this.commitment;
 
     let subscriptionId;
     let response: RpcResponseAndContext&lt;SignatureResult&gt; | null = null;
@@ -2492,6 +2626,30 @@ export class Connection {
   }
 
   /**
+   * Fetch recent performance samples
+   * @return {Promise&lt;Array&lt;PerfSample&gt;&gt;}
+   */
+  async getRecentPerformanceSamples(
+    limit: ?number,
+  ): Promise&lt;Array&lt;PerfSample&gt;&gt; {
+    const args = this._buildArgs(limit ? [limit] : []);
+    const unsafeRes = await this._rpcRequest(
+      &apos;getRecentPerformanceSamples&apos;,
+      args,
+    );
+
+    const res = GetRecentPerformanceSamplesRpcResult(unsafeRes);
+    if (res.error) {
+      throw new Error(
+        &apos;failed to get recent performance samples: &apos; + res.error.message,
+      );
+    }
+
+    assert(typeof res.result !== &apos;undefined&apos;);
+    return res.result;
+  }
+
+  /**
    * Fetch the fee calculator for a recent blockhash from the cluster, return with context
    */
   async getFeeCalculatorForBlockhash(
@@ -2549,10 +2707,11 @@ export class Connection {
    */
   async getConfirmedBlock(slot: number): Promise&lt;ConfirmedBlock&gt; {
     const unsafeRes = await this._rpcRequest(&apos;getConfirmedBlock&apos;, [slot]);
-    const {result, error} = GetConfirmedBlockRpcResult(unsafeRes);
-    if (error) {
-      throw new Error(&apos;failed to get confirmed block: &apos; + result.error.message);
+    const res = GetConfirmedBlockRpcResult(unsafeRes);
+    if (res.error) {
+      throw new Error(&apos;failed to get confirmed block: &apos; + res.error.message);
     }
+    const result = res.result;
     assert(typeof result !== &apos;undefined&apos;);
     if (!result) {
       throw new Error(&apos;Confirmed block &apos; + slot + &apos; not found&apos;);
@@ -2851,11 +3010,12 @@ export class Connection {
 
     const signData = transaction.serializeMessage();
     const wireTransaction = transaction._serialize(signData);
-    const encodedTransaction = bs58.encode(wireTransaction);
-    const args = [encodedTransaction];
+    const encodedTransaction = wireTransaction.toString(&apos;base64&apos;);
+    const config: any = {encoding: &apos;base64&apos;};
+    const args = [encodedTransaction, config];
 
     if (signers) {
-      args.push({sigVerify: true});
+      config.sigVerify = true;
     }
 
     const unsafeRes = await this._rpcRequest(&apos;simulateTransaction&apos;, args);
@@ -2924,7 +3084,7 @@ export class Connection {
     rawTransaction: Buffer | Uint8Array | Array&lt;number&gt;,
     options: ?SendOptions,
   ): Promise&lt;TransactionSignature&gt; {
-    const encodedTransaction = bs58.encode(toBuffer(rawTransaction));
+    const encodedTransaction = toBuffer(rawTransaction).toString(&apos;base64&apos;);
     const result = await this.sendEncodedTransaction(
       encodedTransaction,
       options,
@@ -2934,13 +3094,14 @@ export class Connection {
 
   /**
    * Send a transaction that has already been signed, serialized into the
-   * wire format, and encoded as a base58 string
+   * wire format, and encoded as a base64 string
    */
   async sendEncodedTransaction(
     encodedTransaction: string,
     options: ?SendOptions,
   ): Promise&lt;TransactionSignature&gt; {
-    const args = [encodedTransaction];
+    const config: any = {encoding: &apos;base64&apos;};
+    const args = [encodedTransaction, config];
     const skipPreflight = options &amp;&amp; options.skipPreflight;
     const preflightCommitment = options &amp;&amp; options.preflightCommitment;
 
@@ -2951,14 +3112,22 @@ export class Connection {
     }
 
     if (skipPreflight) {
-      args.push({skipPreflight});
+      config.skipPreflight = skipPreflight;
     } else if (preflightCommitment) {
-      args.push({preflightCommitment});
+      config.preflightCommitment = preflightCommitment;
     }
 
     const unsafeRes = await this._rpcRequest(&apos;sendTransaction&apos;, args);
     const res = SendTransactionRpcResult(unsafeRes);
     if (res.error) {
+      if (res.error.data) {
+        const logs = res.error.data.logs;
+        if (logs &amp;&amp; Array.isArray(logs)) {
+          const traceIndent = &apos;\n    &apos;;
+          const logTrace = traceIndent + logs.join(traceIndent);
+          console.error(res.error.message, logTrace);
+        }
+      }
       throw new Error(&apos;failed to send transaction: &apos; + res.error.message);
     }
     assert(typeof res.result !== &apos;undefined&apos;);

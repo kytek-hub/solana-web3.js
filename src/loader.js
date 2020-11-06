@@ -34,7 +34,12 @@ export class Loader {
    * Can be used to calculate transaction fees
    */
   static getMinNumSignatures(dataLength: number): number {
-    return Math.ceil(dataLength / Loader.chunkSize);
+    return (
+      2 * // Every transaction requires two signatures (payer + program)
+      (Math.ceil(dataLength / Loader.chunkSize) +
+        1 + // Add one for Create transaction
+        1) // Add one for Finalize transaction
+    );
   }
 
   /**
@@ -62,7 +67,7 @@ export class Loader {
       // Fetch program account info to check if it has already been created
       const programInfo = await connection.getAccountInfo(
         program.publicKey,
-        'single',
+        'singleGossip',
       );
 
       let transaction: Transaction | null = null;
@@ -122,7 +127,7 @@ export class Loader {
           transaction,
           [payer, program],
           {
-            commitment: 'single',
+            commitment: 'singleGossip',
             skipPreflight: true,
           },
         );
@@ -164,22 +169,15 @@ export class Loader {
       });
       transactions.push(
         sendAndConfirmTransaction(connection, transaction, [payer, program], {
-          commitment: 'single',
+          commitment: 'singleGossip',
           skipPreflight: true,
         }),
       );
 
       // Delay between sends in an attempt to reduce rate limit errors
-      const REQUESTS_PER_SECOND = 4;
-      await sleep(1000 / REQUESTS_PER_SECOND);
-
-      // Run up to 8 Loads in parallel to prevent too many parallel transactions from
-      // getting retried due to AccountInUse errors.
-      //
-      // TODO: 8 was selected empirically and should probably be revisited
-      if (transactions.length === 8) {
-        await Promise.all(transactions);
-        transactions = [];
+      if (connection._rpcEndpoint.includes('solana.com')) {
+        const REQUESTS_PER_SECOND = 4;
+        await sleep(1000 / REQUESTS_PER_SECOND);
       }
 
       offset += chunkSize;
@@ -212,7 +210,7 @@ export class Loader {
         transaction,
         [payer, program],
         {
-          commitment: 'single',
+          commitment: 'singleGossip',
           skipPreflight: true,
         },
       );

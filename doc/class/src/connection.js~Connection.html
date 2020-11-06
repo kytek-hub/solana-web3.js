@@ -37,6 +37,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/message.js~Message.html">Message</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/nonce-account.js~NonceAccount.html">NonceAccount</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/publickey.js~PublicKey.html">PublicKey</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/secp256k1-program.js~Secp256k1Program.html">Secp256k1Program</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/stake-program.js~Authorized.html">Authorized</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/stake-program.js~Lockup.html">Lockup</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/stake-program.js~StakeInstruction.html">StakeInstruction</a></span></span></li>
@@ -55,6 +56,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-publicKey">publicKey</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-rustString">rustString</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-uint64">uint64</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-constructEthPubkey">constructEthPubkey</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DESTROY_TIMEOUT_MS">DESTROY_TIMEOUT_MS</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-BPF_LOADER_DEPRECATED_PROGRAM_ID">BPF_LOADER_DEPRECATED_PROGRAM_ID</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-BPF_LOADER_PROGRAM_ID">BPF_LOADER_PROGRAM_ID</a></span></span></li>
@@ -62,11 +64,13 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-GetConfirmedBlockRpcResult">GetConfirmedBlockRpcResult</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-LAMPORTS_PER_SOL">LAMPORTS_PER_SOL</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NONCE_ACCOUNT_LENGTH">NONCE_ACCOUNT_LENGTH</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SEED_LENGTH">MAX_SEED_LENGTH</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-STAKE_CONFIG_ID">STAKE_CONFIG_ID</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-STAKE_INSTRUCTION_LAYOUTS">STAKE_INSTRUCTION_LAYOUTS</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-StakeAuthorizationLayout">StakeAuthorizationLayout</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SYSTEM_INSTRUCTION_LAYOUTS">SYSTEM_INSTRUCTION_LAYOUTS</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SYSVAR_CLOCK_PUBKEY">SYSVAR_CLOCK_PUBKEY</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SYSVAR_INSTRUCTIONS_PUBKEY">SYSVAR_INSTRUCTIONS_PUBKEY</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SYSVAR_RECENT_BLOCKHASHES_PUBKEY">SYSVAR_RECENT_BLOCKHASHES_PUBKEY</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SYSVAR_RENT_PUBKEY">SYSVAR_RENT_PUBKEY</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SYSVAR_REWARDS_PUBKEY">SYSVAR_REWARDS_PUBKEY</a></span></span></li>
@@ -95,11 +99,13 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-LeaderSchedule">LeaderSchedule</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ParsedAccountData">ParsedAccountData</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ParsedConfirmedTransaction">ParsedConfirmedTransaction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ParsedConfirmedTransactionMeta">ParsedConfirmedTransactionMeta</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ParsedInstruction">ParsedInstruction</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ParsedMessage">ParsedMessage</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ParsedMessageAccount">ParsedMessageAccount</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ParsedMessageAccount">ParsedMessageAccount</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ParsedTransaction">ParsedTransaction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-PerfSample">PerfSample</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-RpcResponseAndContext">RpcResponseAndContext</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-SendOptions">SendOptions</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-SignatureResult">SignatureResult</a></span></span></li>
@@ -119,6 +125,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-CompiledInstruction">CompiledInstruction</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-MessageArgs">MessageArgs</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-MessageHeader">MessageHeader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-CreateSecp256k1InstructionWithPrivateKeyParams">CreateSecp256k1InstructionWithPrivateKeyParams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-CreateSecp256k1InstructionWithPublicKeyParams">CreateSecp256k1InstructionWithPublicKeyParams</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-AuthorizeStakeParams">AuthorizeStakeParams</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-AuthorizeWithSeedStakeParams">AuthorizeWithSeedStakeParams</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-CreateStakeAccountParams">CreateStakeAccountParams</a></span></span></li>
@@ -164,13 +172,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Connection} from &apos;<span><a href="file/src/connection.js.html#lineNumber1413">@solana/web3</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Connection} from &apos;<span><a href="file/src/connection.js.html#lineNumber1538">@solana/web3</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/connection.js.html#lineNumber1413">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/connection.js.html#lineNumber1538">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -1140,6 +1148,35 @@ size from rent  </p>
           
           <span data-ice="async">async</span>
           
+          <span class="code" data-ice="name"><span><a href="class/src/connection.js~Connection.html#instance-method-getRecentPerformanceSamples">getRecentPerformanceSamples</a></span></span><span class="code" data-ice="signature">(limit: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span><a href="typedef/index.html#static-typedef-PerfSample">PerfSample</a></span>&gt;&gt;</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Fetch recent performance samples  </p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          <span data-ice="async">async</span>
+          
           <span class="code" data-ice="name"><span><a href="class/src/connection.js~Connection.html#instance-method-getSignatureStatus">getSignatureStatus</a></span></span><span class="code" data-ice="signature">(signature: <span><a href="typedef/index.html#static-typedef-TransactionSignature">TransactionSignature</a></span>, config: <span><a href="typedef/index.html#static-typedef-SignatureStatusConfig">SignatureStatusConfig</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span>RpcResponseAndContext&lt;SignatureStatus</span>|<span>nullliteral&gt;</span>&gt;</span>
         </p>
       </div>
@@ -1874,7 +1911,7 @@ specified program change  </p>
         
         
         <div data-ice="description"><p>Send a transaction that has already been signed, serialized into the
-wire format, and encoded as a base58 string  </p>
+wire format, and encoded as a base64 string  </p>
 </div>
       </div>
     </td>
@@ -1993,7 +2030,7 @@ wire format  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1454">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1580">source</a></span></span>
     </span>
   </h3>
 
@@ -2064,7 +2101,7 @@ wire format  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1510">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1638">source</a></span></span>
     </span>
   </h3>
 
@@ -2111,15 +2148,14 @@ wire format  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2041">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2167">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Confirm the transaction identified by the specified signature.</p>
-<p>If <code>commitment</code> is not specified, default to &apos;max&apos;.  </p>
+  <div data-ice="description"><p>Confirm the transaction identified by the specified signature.  </p>
 </div>
 
   
@@ -2190,7 +2226,7 @@ wire format  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1901">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2029">source</a></span></span>
     </span>
   </h3>
 
@@ -2268,7 +2304,7 @@ wire format  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1809">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1937">source</a></span></span>
     </span>
   </h3>
 
@@ -2346,7 +2382,7 @@ wire format  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1539">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1667">source</a></span></span>
     </span>
   </h3>
 
@@ -2424,7 +2460,7 @@ wire format  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1517">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1645">source</a></span></span>
     </span>
   </h3>
 
@@ -2502,7 +2538,7 @@ wire format  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1555">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1683">source</a></span></span>
     </span>
   </h3>
 
@@ -2574,7 +2610,7 @@ wire format  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2112">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2238">source</a></span></span>
     </span>
   </h3>
 
@@ -2630,7 +2666,7 @@ wire format  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2384">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2534">source</a></span></span>
     </span>
   </h3>
 
@@ -2703,7 +2739,7 @@ for a confirmed block  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2493">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2644">source</a></span></span>
     </span>
   </h3>
 
@@ -2791,7 +2827,7 @@ within a specified slot range. Max range allowed is 10,000 slots.  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2521">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2672">source</a></span></span>
     </span>
   </h3>
 
@@ -2872,7 +2908,7 @@ address backwards in time from the provided signature or most recent confirmed b
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2412">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2563">source</a></span></span>
     </span>
   </h3>
 
@@ -2944,7 +2980,7 @@ address backwards in time from the provided signature or most recent confirmed b
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2248">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2374">source</a></span></span>
     </span>
   </h3>
 
@@ -3016,7 +3052,7 @@ address backwards in time from the provided signature or most recent confirmed b
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2262">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2388">source</a></span></span>
     </span>
   </h3>
 
@@ -3072,7 +3108,7 @@ address backwards in time from the provided signature or most recent confirmed b
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2331">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2481">source</a></span></span>
     </span>
   </h3>
 
@@ -3150,7 +3186,7 @@ address backwards in time from the provided signature or most recent confirmed b
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1586">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1714">source</a></span></span>
     </span>
   </h3>
 
@@ -3206,7 +3242,7 @@ address backwards in time from the provided signature or most recent confirmed b
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2232">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2358">source</a></span></span>
     </span>
   </h3>
 
@@ -3278,7 +3314,7 @@ address backwards in time from the provided signature or most recent confirmed b
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1761">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1889">source</a></span></span>
     </span>
   </h3>
 
@@ -3350,7 +3386,7 @@ address backwards in time from the provided signature or most recent confirmed b
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2276">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2402">source</a></span></span>
     </span>
   </h3>
 
@@ -3406,7 +3442,7 @@ address backwards in time from the provided signature or most recent confirmed b
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2290">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2416">source</a></span></span>
     </span>
   </h3>
 
@@ -3485,7 +3521,7 @@ size from rent  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1571">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1699">source</a></span></span>
     </span>
   </h3>
 
@@ -3542,7 +3578,7 @@ This value may increase over time if the node is configured to purge older ledge
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2566">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2717">source</a></span></span>
     </span>
   </h3>
 
@@ -3620,7 +3656,7 @@ This value may increase over time if the node is configured to purge older ledge
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2543">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2694">source</a></span></span>
     </span>
   </h3>
 
@@ -3698,7 +3734,7 @@ This value may increase over time if the node is configured to purge older ledge
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1849">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1977">source</a></span></span>
     </span>
   </h3>
 
@@ -3776,7 +3812,7 @@ This value may increase over time if the node is configured to purge older ledge
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2438">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2589">source</a></span></span>
     </span>
   </h3>
 
@@ -3848,7 +3884,7 @@ This value may increase over time if the node is configured to purge older ledge
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1987">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2115">source</a></span></span>
     </span>
   </h3>
 
@@ -3926,7 +3962,7 @@ This value may increase over time if the node is configured to purge older ledge
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1712">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1840">source</a></span></span>
     </span>
   </h3>
 
@@ -4010,7 +4046,7 @@ This value may increase over time if the node is configured to purge older ledge
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1949">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2077">source</a></span></span>
     </span>
   </h3>
 
@@ -4088,7 +4124,7 @@ This value may increase over time if the node is configured to purge older ledge
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2357">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2507">source</a></span></span>
     </span>
   </h3>
 
@@ -4160,7 +4196,7 @@ This value may increase over time if the node is configured to purge older ledge
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2312">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2438">source</a></span></span>
     </span>
   </h3>
 
@@ -4221,6 +4257,78 @@ This value may increase over time if the node is configured to purge older ledge
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-getRecentPerformanceSamples">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    <span data-ice="async">async</span>
+    
+    <span class="code" data-ice="name">getRecentPerformanceSamples</span><span class="code" data-ice="signature">(limit: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span><a href="typedef/index.html#static-typedef-PerfSample">PerfSample</a></span>&gt;&gt;</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2458">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Fetch recent performance samples  </p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">limit</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+      <td data-ice="appendix"><ul><li>nullable: true</li></ul></td>
+      <td data-ice="description"></td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span><a href="typedef/index.html#static-typedef-PerfSample">PerfSample</a></span>&gt;&gt;</td>
+          
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-getSignatureStatus">
     <span class="access" data-ice="access">public</span>
     
@@ -4232,7 +4340,7 @@ This value may increase over time if the node is configured to purge older ledge
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2169">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2295">source</a></span></span>
     </span>
   </h3>
 
@@ -4310,7 +4418,7 @@ This value may increase over time if the node is configured to purge older ledge
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2184">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2310">source</a></span></span>
     </span>
   </h3>
 
@@ -4388,7 +4496,7 @@ This value may increase over time if the node is configured to purge older ledge
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2141">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2267">source</a></span></span>
     </span>
   </h3>
 
@@ -4460,7 +4568,7 @@ This value may increase over time if the node is configured to purge older ledge
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2155">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2281">source</a></span></span>
     </span>
   </h3>
 
@@ -4532,7 +4640,7 @@ This value may increase over time if the node is configured to purge older ledge
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1917">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2045">source</a></span></span>
     </span>
   </h3>
 
@@ -4616,7 +4724,7 @@ This value may increase over time if the node is configured to purge older ledge
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1601">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1729">source</a></span></span>
     </span>
   </h3>
 
@@ -4688,7 +4796,7 @@ This value may increase over time if the node is configured to purge older ledge
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1637">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1765">source</a></span></span>
     </span>
   </h3>
 
@@ -4766,7 +4874,7 @@ This value may increase over time if the node is configured to purge older ledge
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1658">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1786">source</a></span></span>
     </span>
   </h3>
 
@@ -4850,7 +4958,7 @@ This value may increase over time if the node is configured to purge older ledge
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1786">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1914">source</a></span></span>
     </span>
   </h3>
 
@@ -4929,7 +5037,7 @@ for a given mint.  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1620">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber1748">source</a></span></span>
     </span>
   </h3>
 
@@ -5007,7 +5115,7 @@ for a given mint.  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2218">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2344">source</a></span></span>
     </span>
   </h3>
 
@@ -5079,7 +5187,7 @@ for a given mint.  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2204">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2330">source</a></span></span>
     </span>
   </h3>
 
@@ -5151,7 +5259,7 @@ for a given mint.  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2370">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2520">source</a></span></span>
     </span>
   </h3>
 
@@ -5207,7 +5315,7 @@ for a given mint.  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2126">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2252">source</a></span></span>
     </span>
   </h3>
 
@@ -5279,7 +5387,7 @@ for a given mint.  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber3022">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber3183">source</a></span></span>
     </span>
   </h3>
 
@@ -5367,7 +5475,7 @@ for a given mint.  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber3101">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber3262">source</a></span></span>
     </span>
   </h3>
 
@@ -5456,7 +5564,7 @@ specified program change  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber3301">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber3462">source</a></span></span>
     </span>
   </h3>
 
@@ -5530,7 +5638,7 @@ specified program change  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber3243">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber3404">source</a></span></span>
     </span>
   </h3>
 
@@ -5618,7 +5726,7 @@ specified program change  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber3163">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber3324">source</a></span></span>
     </span>
   </h3>
 
@@ -5692,7 +5800,7 @@ specified program change  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber3043">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber3204">source</a></span></span>
     </span>
   </h3>
 
@@ -5765,7 +5873,7 @@ specified program change  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber3122">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber3283">source</a></span></span>
     </span>
   </h3>
 
@@ -5838,7 +5946,7 @@ specified program change  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber3316">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber3477">source</a></span></span>
     </span>
   </h3>
 
@@ -5911,7 +6019,7 @@ specified program change  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber3264">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber3425">source</a></span></span>
     </span>
   </h3>
 
@@ -5984,7 +6092,7 @@ specified program change  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber3178">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber3339">source</a></span></span>
     </span>
   </h3>
 
@@ -6057,7 +6165,7 @@ specified program change  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2585">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2736">source</a></span></span>
     </span>
   </h3>
 
@@ -6135,7 +6243,7 @@ specified program change  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2773">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2925">source</a></span></span>
     </span>
   </h3>
 
@@ -6143,7 +6251,7 @@ specified program change  </p>
   
   
   <div data-ice="description"><p>Send a transaction that has already been signed, serialized into the
-wire format, and encoded as a base58 string  </p>
+wire format, and encoded as a base64 string  </p>
 </div>
 
   
@@ -6214,7 +6322,7 @@ wire format, and encoded as a base58 string  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2757">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2909">source</a></span></span>
     </span>
   </h3>
 
@@ -6293,7 +6401,7 @@ wire format  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2708">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2860">source</a></span></span>
     </span>
   </h3>
 
@@ -6377,7 +6485,7 @@ wire format  </p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2653">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/connection.js.html#lineNumber2804">source</a></span></span>
     </span>
   </h3>
 

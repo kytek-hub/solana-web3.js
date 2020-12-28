@@ -193,9 +193,14 @@ export async function sendAndConfirmRawTransaction(
   rawTransaction: Buffer,
   options?: ConfirmOptions,
 ): Promise&lt;TransactionSignature&gt; {
+  const sendOptions = options &amp;&amp; {
+    skipPreflight: options.skipPreflight,
+    preflightCommitment: options.preflightCommitment || options.commitment,
+  };
+
   const signature = await connection.sendRawTransaction(
     rawTransaction,
-    options,
+    sendOptions,
   );
 
   const status = (

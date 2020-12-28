@@ -197,10 +197,15 @@ export async function sendAndConfirmTransaction(
   signers: Array&lt;Account&gt;,
   options?: ConfirmOptions,
 ): Promise&lt;TransactionSignature&gt; {
+  const sendOptions = options &amp;&amp; {
+    skipPreflight: options.skipPreflight,
+    preflightCommitment: options.preflightCommitment || options.commitment,
+  };
+
   const signature = await connection.sendTransaction(
     transaction,
     signers,
-    options,
+    sendOptions,
   );
 
   const status = (

@@ -186,12 +186,11 @@
 </code></pre><h3 id="npm">npm</h3><pre><code><code class="source-code prettyprint">$ npm install --save @solana/web3.js</code>
 </code></pre><h3 id="browser-bundle">Browser bundle</h3><pre><code class="lang-html"><code class="source-code prettyprint">&lt;script src=&quot;https://github.com/solana-labs/solana-web3.js/releases/download/v0.0.6/solanaWeb3.min.js&quot;&gt;&lt;/script&gt;</code>
 </code></pre>
-<h3 id="bpf-program-development">BPF program development</h3><p>The Solana BPF SDK is located in the <code>bpf-sdk/</code> subdirectory if you installed
-solana-web3.js from npmjs.com.</p>
-<p>From a git clone, run <code>npm run bpf-sdk:install</code> to fetch the latest BPF SDK.</p>
-<p>Additionally Rust must be installed to build Rust BPF programs such as
-<code>examples/bpf-rust-noop/</code>.  See <a href="https://www.rust-lang.org/install.html">https://www.rust-lang.org/install.html</a> for
-installation details.</p>
+<h3 id="development-environment-setup">Development Environment Setup</h3><p>To build and run tests:</p>
+<ol>
+<li>Install Rust from <a href="https://rustup.rs/">https://rustup.rs/</a></li>
+<li>Install the latest Solana release from <a href="https://docs.solana.com/cli/install-solana-cli-tools">https://docs.solana.com/cli/install-solana-cli-tools</a></li>
+</ol>
 <h2 id="usage">Usage</h2><h3 id="javascript">Javascript</h3><pre><code class="lang-js"><code class="source-code prettyprint">const solanaWeb3 = require(&apos;@solana/web3.js&apos;);
 console.log(solanaWeb3);</code>
 </code></pre>
@@ -200,21 +199,6 @@ console.log(solanaWeb3);</code>
 </code></pre>
 <h3 id="browser-bundle">Browser bundle</h3><pre><code class="lang-js"><code class="source-code prettyprint">// `solanaWeb3` is provided in the global namespace by the `solanaWeb3.min.js` script bundle.
 console.log(solanaWeb3);</code>
-</code></pre>
-<h2 id="local-network">Local Network</h2><p>The <code>solana-localnet</code> program is provided to easily start a test Solana cluster
-locally on your machine.  Docker must be installed.  The JSON RPC endpoint of
-the local cluster is <code>http://localhost:8899</code>.</p>
-<p>To start, first fetch the latest Docker image by running:</p>
-<pre><code class="lang-bash"><code class="source-code prettyprint">$ npx solana-localnet update</code>
-</code></pre>
-<p>Then run the following command to start the cluster</p>
-<pre><code class="lang-bash"><code class="source-code prettyprint">$ npx solana-localnet up</code>
-</code></pre>
-<p>While the cluster is running logs are available with:</p>
-<pre><code class="lang-bash"><code class="source-code prettyprint">$ npx solana-localnet logs -f</code>
-</code></pre>
-<p>Stop the cluster with:</p>
-<pre><code class="lang-bash"><code class="source-code prettyprint">$ npx solana-localnet down</code>
 </code></pre>
 <h2 id="flow">Flow</h2><p>A <a href="https://flow.org/en/docs/libdefs/">Flow library definition</a> is provided at
 <a href="https://github.com/solana-labs/solana-web3.js/tree/master/module.flow.js">module.flow.js</a>.
@@ -235,6 +219,29 @@ and <a href="https://www.npmjs.com/package/@solana/web3.js">npmjs.com</a></p>
 <p>Each Github release features a tarball containing API documentation and a
 minified version of the module suitable for direct use in a browser environment
 (&lt;script&gt; tag)</p>
+<h2 id="deprecated">Deprecated</h2><h3 id="local-network">Local Network</h3><p><strong>Please use <code>solana-test-validator</code> from the latest Solana release instead of the information in this section</strong></p>
+<p>The <code>solana-localnet</code> program is provided to easily start a test Solana cluster
+locally on your machine.  Docker must be installed.  The JSON RPC endpoint of
+the local cluster is <code>http://localhost:8899</code>.</p>
+<p>To start, first fetch the latest Docker image by running:</p>
+<pre><code class="lang-bash"><code class="source-code prettyprint">$ npx solana-localnet update</code>
+</code></pre>
+<p>Then run the following command to start the cluster</p>
+<pre><code class="lang-bash"><code class="source-code prettyprint">$ npx solana-localnet up</code>
+</code></pre>
+<p>While the cluster is running logs are available with:</p>
+<pre><code class="lang-bash"><code class="source-code prettyprint">$ npx solana-localnet logs -f</code>
+</code></pre>
+<p>Stop the cluster with:</p>
+<pre><code class="lang-bash"><code class="source-code prettyprint">$ npx solana-localnet down</code>
+</code></pre>
+<h3 id="bpf-program-development">BPF program development</h3><p><strong>Please use <code>cargo build-bpf</code> from the latest Solana release instead of the information in this section</strong></p>
+<p>The Solana BPF SDK is located in the <code>bpf-sdk/</code> subdirectory if you installed
+solana-web3.js from npmjs.com.</p>
+<p>From a git clone, run <code>npm run bpf-sdk:install</code> to fetch the latest BPF SDK.</p>
+<p>Additionally Rust must be installed to build Rust BPF programs such as
+<code>examples/bpf-rust-noop/</code>.  See <a href="https://www.rust-lang.org/install.html">https://www.rust-lang.org/install.html</a> for
+installation details.</p>
 </div>
 </div>
 

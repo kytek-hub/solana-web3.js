@@ -450,6 +450,7 @@ const GetInflationGovernorResult = struct({
  * @property {number} slotsInEpoch
  * @property {number} absoluteSlot
  * @property {number} blockHeight
+ * @property {number} transactionCount
  */
 type EpochInfo = {
   epoch: number,
@@ -457,6 +458,7 @@ type EpochInfo = {
   slotsInEpoch: number,
   absoluteSlot: number,
   blockHeight: number | null,
+  transactionCount: number | null,
 };
 
 const GetEpochInfoResult = struct({
@@ -465,6 +467,7 @@ const GetEpochInfoResult = struct({
   slotsInEpoch: &apos;number&apos;,
   absoluteSlot: &apos;number&apos;,
   blockHeight: &apos;number?&apos;,
+  transactionCount: &apos;number?&apos;,
 });
 
 /**
@@ -542,14 +545,15 @@ const SimulatedTransactionResponseValidator = jsonRpcResultAndContext(
   }),
 );
 
-type PartiallyDecodedInnerInstruction = {
-  index: number,
-  instructions: PartiallyDecodedInstruction[],
-};
-
 type ParsedInnerInstruction = {
   index: number,
-  instructions: (ParsedInstruction | PartiallyDecodedInnerInstruction)[],
+  instructions: (ParsedInstruction | PartiallyDecodedInstruction)[],
+};
+
+type TokenBalance = {
+  accountIndex: number,
+  mint: string,
+  uiTokenAmount: TokenAmount,
 };
 
 /**
@@ -561,6 +565,8 @@ type ParsedInnerInstruction = {
  * @property {Array&lt;number&gt;} preBalances The balances of the transaction accounts before processing
  * @property {Array&lt;number&gt;} postBalances The balances of the transaction accounts after processing
  * @property {Array&lt;string&gt;} logMessages An array of program log messages emitted during a transaction
+ * @property {Array&lt;TokenBalance&gt;} preTokenBalances The token balances of the transaction accounts before processing
+ * @property {Array&lt;TokenBalance&gt;} postTokenBalances The token balances of the transaction accounts after processing
  * @property {object|null} err The error result of transaction processing
  */
 type ParsedConfirmedTransactionMeta = {
@@ -569,6 +575,8 @@ type ParsedConfirmedTransactionMeta = {
   preBalances: Array&lt;number&gt;,
   postBalances: Array&lt;number&gt;,
   logMessages?: Array&lt;string&gt;,
+  preTokenBalances?: Array&lt;TokenBalance&gt;,
+  postTokenBalances?: Array&lt;TokenBalance&gt;,
   err: TransactionError | null,
 };
 
@@ -1357,6 +1365,36 @@ const ConfirmedTransactionMetaResult = struct.union([
     preBalances: struct.array([&apos;number&apos;]),
     postBalances: struct.array([&apos;number&apos;]),
     logMessages: struct.union([struct.array([&apos;string&apos;]), &apos;null&apos;, &apos;undefined&apos;]),
+    preTokenBalances: struct.union([
+      struct.array([
+        struct.pick({
+          accountIndex: &apos;number&apos;,
+          mint: &apos;string&apos;,
+          uiTokenAmount: struct.pick({
+            amount: &apos;string&apos;,
+            decimals: &apos;number&apos;,
+            uiAmount: &apos;number&apos;,
+          }),
+        }),
+      ]),
+      &apos;null&apos;,
+      &apos;undefined&apos;,
+    ]),
+    postTokenBalances: struct.union([
+      struct.array([
+        struct.pick({
+          accountIndex: &apos;number&apos;,
+          mint: &apos;string&apos;,
+          uiTokenAmount: struct.pick({
+            amount: &apos;string&apos;,
+            decimals: &apos;number&apos;,
+            uiAmount: &apos;number&apos;,
+          }),
+        }),
+      ]),
+      &apos;null&apos;,
+      &apos;undefined&apos;,
+    ]),
   }),
 ]);
 /**
@@ -1393,6 +1431,36 @@ const ParsedConfirmedTransactionMetaResult = struct.union([
     preBalances: struct.array([&apos;number&apos;]),
     postBalances: struct.array([&apos;number&apos;]),
     logMessages: struct.union([struct.array([&apos;string&apos;]), &apos;null&apos;, &apos;undefined&apos;]),
+    preTokenBalances: struct.union([
+      struct.array([
+        struct.pick({
+          accountIndex: &apos;number&apos;,
+          mint: &apos;string&apos;,
+          uiTokenAmount: struct.pick({
+            amount: &apos;string&apos;,
+            decimals: &apos;number&apos;,
+            uiAmount: &apos;number&apos;,
+          }),
+        }),
+      ]),
+      &apos;null&apos;,
+      &apos;undefined&apos;,
+    ]),
+    postTokenBalances: struct.union([
+      struct.array([
+        struct.pick({
+          accountIndex: &apos;number&apos;,
+          mint: &apos;string&apos;,
+          uiTokenAmount: struct.pick({
+            amount: &apos;string&apos;,
+            decimals: &apos;number&apos;,
+            uiAmount: &apos;number&apos;,
+          }),
+        }),
+      ]),
+      &apos;null&apos;,
+      &apos;undefined&apos;,
+    ]),
   }),
 ]);
 
@@ -2380,7 +2448,7 @@ export class Connection {
       case &apos;recent&apos;:
       case &apos;single&apos;:
       case &apos;singleGossip&apos;: {
-        timeoutMs = 10 * 1000;
+        timeoutMs = 30 * 1000;
         break;
       }
       // exhaust enums to ensure full coverage
@@ -2399,7 +2467,9 @@ export class Connection {
     if (response === null) {
       const duration = (Date.now() - start) / 1000;
       throw new Error(
-        `Transaction was not confirmed in ${duration.toFixed(2)} seconds`,
+        `Transaction was not confirmed in ${duration.toFixed(
+          2,
+        )} seconds. It is unknown if it succeeded or failed. Check signature ${signature} using the Solana Explorer or CLI tools.`,
       );
     }
 
@@ -2774,6 +2844,18 @@ export class Connection {
     assert(typeof result !== &apos;undefined&apos;);
     if (result === null) return result;
 
+    if (result.meta.innerInstructions) {
+      result.meta.innerInstructions.forEach(inner =&gt; {
+        inner.instructions.forEach(ix =&gt; {
+          ix.programId = new PublicKey(ix.programId);
+
+          if (ix.accounts) {
+            ix.accounts = ix.accounts.map(account =&gt; new PublicKey(account));
+          }
+        });
+      });
+    }
+
     const {
       accountKeys,
       instructions,
@@ -3011,7 +3093,10 @@ export class Connection {
     const signData = transaction.serializeMessage();
     const wireTransaction = transaction._serialize(signData);
     const encodedTransaction = wireTransaction.toString(&apos;base64&apos;);
-    const config: any = {encoding: &apos;base64&apos;};
+    const config: any = {
+      encoding: &apos;base64&apos;,
+      commitment: this.commitment,
+    };
     const args = [encodedTransaction, config];
 
     if (signers) {
@@ -3105,15 +3190,10 @@ export class Connection {
     const skipPreflight = options &amp;&amp; options.skipPreflight;
     const preflightCommitment = options &amp;&amp; options.preflightCommitment;
 
-    if (skipPreflight &amp;&amp; preflightCommitment) {
-      throw new Error(
-        &apos;cannot set preflightCommitment when skipPreflight is enabled&apos;,
-      );
-    }
-
     if (skipPreflight) {
       config.skipPreflight = skipPreflight;
-    } else if (preflightCommitment) {
+    }
+    if (preflightCommitment) {
       config.preflightCommitment = preflightCommitment;
     }
 

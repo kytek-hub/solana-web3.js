@@ -302,7 +302,6 @@ export class Loader {
           [payer, program],
           {
             commitment: &apos;singleGossip&apos;,
-            skipPreflight: true,
           },
         );
       }
@@ -344,7 +343,6 @@ export class Loader {
       transactions.push(
         sendAndConfirmTransaction(connection, transaction, [payer, program], {
           commitment: &apos;singleGossip&apos;,
-          skipPreflight: true,
         }),
       );
 
@@ -385,7 +383,6 @@ export class Loader {
         [payer, program],
         {
           commitment: &apos;singleGossip&apos;,
-          skipPreflight: true,
         },
       );
     }

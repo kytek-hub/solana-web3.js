@@ -34,12 +34,7 @@ export class Loader {
    * Can be used to calculate transaction fees
    */
   static getMinNumSignatures(dataLength: number): number {
-    return (
-      2 * // Every transaction requires two signatures (payer + program)
-      (Math.ceil(dataLength / Loader.chunkSize) +
-        1 + // Add one for Create transaction
-        1) // Add one for Finalize transaction
-    );
+    return Math.ceil(dataLength / Loader.chunkSize);
   }
 
   /**
@@ -50,7 +45,6 @@ export class Loader {
    * @param program Account to load the program into
    * @param programId Public key that identifies the loader
    * @param data Program octets
-   * @return true if program was loaded successfully, false if program was already loaded
    */
   static async load(
     connection: Connection,
@@ -58,79 +52,29 @@ export class Loader {
     program: Account,
     programId: PublicKey,
     data: Buffer | Uint8Array | Array<number>,
-  ): Promise<boolean> {
+  ): Promise<void> {
     {
       const balanceNeeded = await connection.getMinimumBalanceForRentExemption(
         data.length,
       );
-
-      // Fetch program account info to check if it has already been created
-      const programInfo = await connection.getAccountInfo(
-        program.publicKey,
-        'singleGossip',
+      const transaction = new Transaction().add(
+        SystemProgram.createAccount({
+          fromPubkey: payer.publicKey,
+          newAccountPubkey: program.publicKey,
+          lamports: balanceNeeded > 0 ? balanceNeeded : 1,
+          space: data.length,
+          programId,
+        }),
       );
-
-      let transaction: Transaction | null = null;
-      if (programInfo !== null) {
-        if (programInfo.executable) {
-          console.error('Program load failed, account is already executable');
-          return false;
-        }
-
-        if (programInfo.data.length !== data.length) {
-          transaction = transaction || new Transaction();
-          transaction.add(
-            SystemProgram.allocate({
-              accountPubkey: program.publicKey,
-              space: data.length,
-            }),
-          );
-        }
-
-        if (!programInfo.owner.equals(programId)) {
-          transaction = transaction || new Transaction();
-          transaction.add(
-            SystemProgram.assign({
-              accountPubkey: program.publicKey,
-              programId,
-            }),
-          );
-        }
-
-        if (programInfo.lamports < balanceNeeded) {
-          transaction = transaction || new Transaction();
-          transaction.add(
-            SystemProgram.transfer({
-              fromPubkey: payer.publicKey,
-              toPubkey: program.publicKey,
-              lamports: balanceNeeded - programInfo.lamports,
-            }),
-          );
-        }
-      } else {
-        transaction = new Transaction().add(
-          SystemProgram.createAccount({
-            fromPubkey: payer.publicKey,
-            newAccountPubkey: program.publicKey,
-            lamports: balanceNeeded > 0 ? balanceNeeded : 1,
-            space: data.length,
-            programId,
-          }),
-        );
-      }
-
-      // If the account is already created correctly, skip this step
-      // and proceed directly to loading instructions
-      if (transaction !== null) {
-        await sendAndConfirmTransaction(
-          connection,
-          transaction,
-          [payer, program],
-          {
-            commitment: 'singleGossip',
-          },
-        );
-      }
+      await sendAndConfirmTransaction(
+        connection,
+        transaction,
+        [payer, program],
+        {
+          commitment: 'single',
+          skipPreflight: true,
+        },
+      );
     }
 
     const dataLayout = BufferLayout.struct([
@@ -168,14 +112,22 @@ export class Loader {
       });
       transactions.push(
         sendAndConfirmTransaction(connection, transaction, [payer, program], {
-          commitment: 'singleGossip',
+          commitment: 'single',
+          skipPreflight: true,
         }),
       );
 
       // Delay between sends in an attempt to reduce rate limit errors
-      if (connection._rpcEndpoint.includes('solana.com')) {
-        const REQUESTS_PER_SECOND = 4;
-        await sleep(1000 / REQUESTS_PER_SECOND);
+      const REQUESTS_PER_SECOND = 4;
+      await sleep(1000 / REQUESTS_PER_SECOND);
+
+      // Run up to 8 Loads in parallel to prevent too many parallel transactions from
+      // getting retried due to AccountInUse errors.
+      //
+      // TODO: 8 was selected empirically and should probably be revisited
+      if (transactions.length === 8) {
+        await Promise.all(transactions);
+        transactions = [];
       }
 
       offset += chunkSize;
@@ -208,12 +160,10 @@ export class Loader {
         transaction,
         [payer, program],
         {
-          commitment: 'singleGossip',
+          commitment: 'single',
+          skipPreflight: true,
         },
       );
     }
-
-    // success
-    return true;
   }
 }

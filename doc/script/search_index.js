@@ -6,12 +6,6 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "@solana/web3~agentmanager",
-    "class/src/agent-manager.js~AgentManager.html",
-    "<span>AgentManager</span> <span class=\"search-result-import-path\">@solana/web3</span>",
-    "class"
-  ],
-  [
     "@solana/web3~authorized",
     "class/src/stake-program.js~Authorized.html",
     "<span>Authorized</span> <span class=\"search-result-import-path\">@solana/web3</span>",
@@ -48,12 +42,6 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "@solana/web3~destroy_timeout_ms",
-    "variable/index.html#static-variable-DESTROY_TIMEOUT_MS",
-    "<span>DESTROY_TIMEOUT_MS</span> <span class=\"search-result-import-path\">@solana/web3</span>",
-    "variable"
-  ],
-  [
     "@solana/web3~getconfirmedblockrpcresult",
     "variable/index.html#static-variable-GetConfirmedBlockRpcResult",
     "<span>GetConfirmedBlockRpcResult</span> <span class=\"search-result-import-path\">@solana/web3</span>",
@@ -76,12 +64,6 @@ window.esdocSearchIndex = [
     "class/src/stake-program.js~Lockup.html",
     "<span>Lockup</span> <span class=\"search-result-import-path\">@solana/web3</span>",
     "class"
-  ],
-  [
-    "@solana/web3~max_seed_length",
-    "variable/index.html#static-variable-MAX_SEED_LENGTH",
-    "<span>MAX_SEED_LENGTH</span> <span class=\"search-result-import-path\">@solana/web3</span>",
-    "variable"
   ],
   [
     "@solana/web3~message",
@@ -138,12 +120,6 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "@solana/web3~sysvar_instructions_pubkey",
-    "variable/index.html#static-variable-SYSVAR_INSTRUCTIONS_PUBKEY",
-    "<span>SYSVAR_INSTRUCTIONS_PUBKEY</span> <span class=\"search-result-import-path\">@solana/web3</span>",
-    "variable"
-  ],
-  [
     "@solana/web3~sysvar_recent_blockhashes_pubkey",
     "variable/index.html#static-variable-SYSVAR_RECENT_BLOCKHASHES_PUBKEY",
     "<span>SYSVAR_RECENT_BLOCKHASHES_PUBKEY</span> <span class=\"search-result-import-path\">@solana/web3</span>",
@@ -166,12 +142,6 @@ window.esdocSearchIndex = [
     "variable/index.html#static-variable-SYSVAR_STAKE_HISTORY_PUBKEY",
     "<span>SYSVAR_STAKE_HISTORY_PUBKEY</span> <span class=\"search-result-import-path\">@solana/web3</span>",
     "variable"
-  ],
-  [
-    "@solana/web3~secp256k1program",
-    "class/src/secp256k1-program.js~Secp256k1Program.html",
-    "<span>Secp256k1Program</span> <span class=\"search-result-import-path\">@solana/web3</span>",
-    "class"
   ],
   [
     "@solana/web3~stakeauthorizationlayout",
@@ -249,12 +219,6 @@ window.esdocSearchIndex = [
     "@solana/web3~clusterapiurl",
     "function/index.html#static-function-clusterApiUrl",
     "<span>clusterApiUrl</span> <span class=\"search-result-import-path\">@solana/web3</span>",
-    "function"
-  ],
-  [
-    "@solana/web3~constructethpubkey",
-    "function/index.html#static-function-constructEthPubkey",
-    "<span>constructEthPubkey</span> <span class=\"search-result-import-path\">@solana/web3</span>",
     "function"
   ],
   [
@@ -648,30 +612,6 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "src/agent-manager.js",
-    "file/src/agent-manager.js.html",
-    "src/agent-manager.js",
-    "file"
-  ],
-  [
-    "src/agent-manager.js~agentmanager#constructor",
-    "class/src/agent-manager.js~AgentManager.html#instance-constructor-constructor",
-    "src/agent-manager.js~AgentManager#constructor",
-    "method"
-  ],
-  [
-    "src/agent-manager.js~agentmanager#requestend",
-    "class/src/agent-manager.js~AgentManager.html#instance-method-requestEnd",
-    "src/agent-manager.js~AgentManager#requestEnd",
-    "method"
-  ],
-  [
-    "src/agent-manager.js~agentmanager#requeststart",
-    "class/src/agent-manager.js~AgentManager.html#instance-method-requestStart",
-    "src/agent-manager.js~AgentManager#requestStart",
-    "method"
-  ],
-  [
     "src/blockhash.js",
     "file/src/blockhash.js.html",
     "src/blockhash.js",
@@ -954,12 +894,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/connection.js~connection#getrecentperformancesamples",
-    "class/src/connection.js~Connection.html#instance-method-getRecentPerformanceSamples",
-    "src/connection.js~Connection#getRecentPerformanceSamples",
-    "method"
-  ],
-  [
     "src/connection.js~connection#getsignaturestatus",
     "class/src/connection.js~Connection.html#instance-method-getSignatureStatus",
     "src/connection.js~Connection#getSignatureStatus",
@@ -981,12 +915,6 @@ window.esdocSearchIndex = [
     "src/connection.js~connection#getslotleader",
     "class/src/connection.js~Connection.html#instance-method-getSlotLeader",
     "src/connection.js~Connection#getSlotLeader",
-    "method"
-  ],
-  [
-    "src/connection.js~connection#getstakeactivation",
-    "class/src/connection.js~Connection.html#instance-method-getStakeActivation",
-    "src/connection.js~Connection#getStakeActivation",
     "method"
   ],
   [
@@ -1200,12 +1128,6 @@ window.esdocSearchIndex = [
     "typedef"
   ],
   [
-    "src/connection.js~parsedconfirmedtransactionmeta",
-    "typedef/index.html#static-typedef-ParsedConfirmedTransactionMeta",
-    "src/connection.js~ParsedConfirmedTransactionMeta",
-    "typedef"
-  ],
-  [
     "src/connection.js~parsedinstruction",
     "typedef/index.html#static-typedef-ParsedInstruction",
     "src/connection.js~ParsedInstruction",
@@ -1233,12 +1155,6 @@ window.esdocSearchIndex = [
     "src/connection.js~parsedtransaction",
     "typedef/index.html#static-typedef-ParsedTransaction",
     "src/connection.js~ParsedTransaction",
-    "typedef"
-  ],
-  [
-    "src/connection.js~perfsample",
-    "typedef/index.html#static-typedef-PerfSample",
-    "src/connection.js~PerfSample",
     "typedef"
   ],
   [
@@ -1275,12 +1191,6 @@ window.esdocSearchIndex = [
     "src/connection.js~slotinfo",
     "typedef/index.html#static-typedef-SlotInfo",
     "src/connection.js~SlotInfo",
-    "typedef"
-  ],
-  [
-    "src/connection.js~stakeactivationdata",
-    "typedef/index.html#static-typedef-StakeActivationData",
-    "src/connection.js~StakeActivationData",
     "typedef"
   ],
   [
@@ -1407,6 +1317,12 @@ window.esdocSearchIndex = [
     "src/message.js~message#constructor",
     "class/src/message.js~Message.html#instance-constructor-constructor",
     "src/message.js~Message#constructor",
+    "method"
+  ],
+  [
+    "src/message.js~message#findsignerindex",
+    "class/src/message.js~Message.html#instance-method-findSignerIndex",
+    "src/message.js~Message#findSignerIndex",
     "method"
   ],
   [
@@ -1540,42 +1456,6 @@ window.esdocSearchIndex = [
     "class/src/publickey.js~PublicKey.html#static-method-findProgramAddress",
     "src/publickey.js~PublicKey.findProgramAddress",
     "method"
-  ],
-  [
-    "src/secp256k1-program.js",
-    "file/src/secp256k1-program.js.html",
-    "src/secp256k1-program.js",
-    "file"
-  ],
-  [
-    "src/secp256k1-program.js~createsecp256k1instructionwithprivatekeyparams",
-    "typedef/index.html#static-typedef-CreateSecp256k1InstructionWithPrivateKeyParams",
-    "src/secp256k1-program.js~CreateSecp256k1InstructionWithPrivateKeyParams",
-    "typedef"
-  ],
-  [
-    "src/secp256k1-program.js~createsecp256k1instructionwithpublickeyparams",
-    "typedef/index.html#static-typedef-CreateSecp256k1InstructionWithPublicKeyParams",
-    "src/secp256k1-program.js~CreateSecp256k1InstructionWithPublicKeyParams",
-    "typedef"
-  ],
-  [
-    "src/secp256k1-program.js~secp256k1program.createinstructionwithprivatekey",
-    "class/src/secp256k1-program.js~Secp256k1Program.html#static-method-createInstructionWithPrivateKey",
-    "src/secp256k1-program.js~Secp256k1Program.createInstructionWithPrivateKey",
-    "method"
-  ],
-  [
-    "src/secp256k1-program.js~secp256k1program.createinstructionwithpublickey",
-    "class/src/secp256k1-program.js~Secp256k1Program.html#static-method-createInstructionWithPublicKey",
-    "src/secp256k1-program.js~Secp256k1Program.createInstructionWithPublicKey",
-    "method"
-  ],
-  [
-    "src/secp256k1-program.js~secp256k1program.programid",
-    "class/src/secp256k1-program.js~Secp256k1Program.html#static-get-programId",
-    "src/secp256k1-program.js~Secp256k1Program.programId",
-    "member"
   ],
   [
     "src/stake-program.js",
@@ -2095,7 +1975,7 @@ window.esdocSearchIndex = [
   ],
   [
     "src/transaction.js~transaction#feepayer",
-    "class/src/transaction.js~Transaction.html#instance-member-feePayer",
+    "class/src/transaction.js~Transaction.html#instance-get-feePayer",
     "src/transaction.js~Transaction#feePayer",
     "member"
   ],

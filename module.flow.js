@@ -16,7 +16,6 @@ import {PublicKey} from './src/publickey';
 
 declare module '@solana/web3.js' {
   // === src/publickey.js ===
-  declare export var MAX_SEED_LENGTH: number;
   declare export type PublicKeyNonce = [PublicKey, number];
   declare export class PublicKey {
     constructor(
@@ -63,13 +62,11 @@ declare module '@solana/web3.js' {
 
   declare export type SendOptions = {
     skipPreflight: ?boolean,
-    preflightCommitment: ?Commitment,
   };
 
   declare export type ConfirmOptions = {
     commitment: ?Commitment,
     skipPreflight: ?boolean,
-    preflightCommitment: ?Commitment,
   };
 
   declare export type ConfirmedSignaturesForAddress2Options = {
@@ -152,41 +149,10 @@ declare module '@solana/web3.js' {
     logs: Array<string> | null,
   };
 
-  declare export type CompiledInnerInstruction = {
-    index: number,
-    instructions: CompiledInstruction[],
-  };
-
-  declare export type TokenBalance = {
-    accountIndex: number,
-    mint: string,
-    uiTokenAmount: TokenAmount,
-  };
-
   declare export type ConfirmedTransactionMeta = {
     fee: number,
-    innerInstructions?: CompiledInnerInstruction[],
     preBalances: Array<number>,
     postBalances: Array<number>,
-    logMessages?: Array<string>,
-    preTokenBalances?: Array<TokenBalance>,
-    postTokenBalances?: Array<TokenBalance>,
-    err: TransactionError | null,
-  };
-
-  declare export type ParsedInnerInstruction = {
-    index: number,
-    instructions: (ParsedInstruction | PartiallyDecodedInstruction)[],
-  };
-
-  declare export type ParsedConfirmedTransactionMeta = {
-    fee: number,
-    innerInstructions?: ParsedInnerInstruction[],
-    preBalances: Array<number>,
-    postBalances: Array<number>,
-    logMessages?: Array<string>,
-    preTokenBalances?: Array<TokenBalance>,
-    postTokenBalances?: Array<TokenBalance>,
     err: TransactionError | null,
   };
 
@@ -200,13 +166,6 @@ declare module '@solana/web3.js' {
     }>,
   };
 
-  declare export type PerfSample = {
-    slot: number,
-    numTransactions: number,
-    numSlots: number,
-    samplePeriodSecs: number,
-  };
-
   declare export type ConfirmedTransaction = {
     slot: number,
     transaction: Transaction,
@@ -217,12 +176,6 @@ declare module '@solana/web3.js' {
     program: string,
     parsed: any,
     space: number,
-  };
-
-  declare export type StakeActivationData = {
-    state: 'active' | 'inactive' | 'activating' | 'deactivating',
-    active: number,
-    inactive: number,
   };
 
   declare export type ParsedMessageAccount = {
@@ -255,7 +208,7 @@ declare module '@solana/web3.js' {
   declare export type ParsedConfirmedTransaction = {
     slot: number,
     transaction: ParsedTransaction,
-    meta: ParsedConfirmedTransactionMeta | null,
+    meta: ConfirmedTransactionMeta | null,
   };
 
   declare export type KeyedAccountInfo = {
@@ -265,7 +218,6 @@ declare module '@solana/web3.js' {
 
   declare export type Version = {
     'solana-core': string,
-    'feature-set': ?number,
   };
 
   declare export type VoteAccountInfo = {
@@ -376,11 +328,6 @@ declare module '@solana/web3.js' {
     ): Promise<
       RpcResponseAndContext<AccountInfo<Buffer | ParsedAccountData> | null>,
     >;
-    getStakeActivation(
-      publicKey: PublicKey,
-      commitment?: Commitment,
-      epoch?: number,
-    ): Promise<StakeActivationData>;
     getProgramAccounts(
       programId: PublicKey,
       commitment: ?Commitment,
@@ -464,7 +411,6 @@ declare module '@solana/web3.js' {
     getRecentBlockhashAndContext(
       commitment: ?Commitment,
     ): Promise<RpcResponseAndContext<BlockhashAndFeeCalculator>>;
-    getRecentPerformanceSamples(limit: ?number): Promise<Array<PerfSample>>;
     getFeeCalculatorForBlockhash(
       blockhash: Blockhash,
       commitment: ?Commitment,
@@ -566,7 +512,6 @@ declare module '@solana/web3.js' {
   declare export var SYSVAR_RENT_PUBKEY;
   declare export var SYSVAR_REWARDS_PUBKEY;
   declare export var SYSVAR_STAKE_HISTORY_PUBKEY;
-  declare export var SYSVAR_INSTRUCTIONS_PUBKEY;
 
   // === src/vote-account.js ===
   declare export var VOTE_PROGRAM_ID;
@@ -631,7 +576,6 @@ declare module '@solana/web3.js' {
     instructions: CompiledInstruction[];
 
     constructor(args: MessageArgs): Message;
-    static from(buffer: Buffer | Uint8Array | Array<number>): Message;
     isAccountWritable(index: number): boolean;
     serialize(): Buffer;
   }
@@ -675,7 +619,6 @@ declare module '@solana/web3.js' {
     recentBlockhash?: Blockhash,
     nonceInfo?: NonceInformation,
     signatures?: Array<SignaturePubkeyPair>,
-    feePayer?: PublicKey,
   |};
 
   declare export type SerializeConfig = {
@@ -689,7 +632,7 @@ declare module '@solana/web3.js' {
     instructions: Array<TransactionInstruction>;
     recentBlockhash: ?Blockhash;
     nonceInfo: ?NonceInformation;
-    feePayer: ?PublicKey;
+    feePayer: PublicKey | null;
 
     constructor(opts?: TransactionCtorFields): Transaction;
     static from(buffer: Buffer | Uint8Array | Array<number>): Transaction;
@@ -805,7 +748,6 @@ declare module '@solana/web3.js' {
     ): Transaction;
     static delegate(params: DelegateStakeParams): Transaction;
     static authorize(params: AuthorizeStakeParams): Transaction;
-    static authorizeWithSeed(params: AuthorizeWithSeedStakeParams): Transaction;
     static split(params: SplitStakeParams): Transaction;
     static withdraw(params: WithdrawStakeParams): Transaction;
     static deactivate(params: DeactivateStakeParams): Transaction;
@@ -837,9 +779,6 @@ declare module '@solana/web3.js' {
     static decodeAuthorize(
       instruction: TransactionInstruction,
     ): AuthorizeStakeParams;
-    static decodeAuthorizeWithSeed(
-      instruction: TransactionInstruction,
-    ): AuthorizeWithSeedStakeParams;
     static decodeSplit(instruction: TransactionInstruction): SplitStakeParams;
     static decodeWithdraw(
       instruction: TransactionInstruction,
@@ -1010,31 +949,6 @@ declare module '@solana/web3.js' {
     ): AuthorizeNonceParams;
   }
 
-  // === src/secp256k1-program.js ===
-  declare export type CreateSecp256k1InstructionWithPublicKeyParams = {|
-    publicKey: Buffer | Uint8Array | Array<number>,
-    message: Buffer | Uint8Array | Array<number>,
-    signature: Buffer | Uint8Array | Array<number>,
-    recoveryId: number,
-  |};
-
-  declare export type CreateSecp256k1InstructionWithPrivateKeyParams = {|
-    privateKey: Buffer | Uint8Array | Array<number>,
-    message: Buffer | Uint8Array | Array<number>,
-  |};
-
-  declare export class Secp256k1Program {
-    static get programId(): PublicKey;
-
-    static createInstructionWithPublicKey(
-      params: CreateSecp256k1InstructionWithPublicKeyParams,
-    ): TransactionInstruction;
-
-    static createInstructionWithPrivateKey(
-      params: CreateSecp256k1InstructionWithPrivateKeyParams,
-    ): TransactionInstruction;
-  }
-
   // === src/loader.js ===
   declare export class Loader {
     static getMinNumSignatures(dataLength: number): number;
@@ -1044,7 +958,7 @@ declare module '@solana/web3.js' {
       program: Account,
       programId: PublicKey,
       data: Buffer | Uint8Array | Array<number>,
-    ): Promise<boolean>;
+    ): Promise<PublicKey>;
   }
 
   // === src/bpf-loader.js ===
@@ -1057,7 +971,7 @@ declare module '@solana/web3.js' {
       program: Account,
       elfBytes: Buffer | Uint8Array | Array<number>,
       loaderProgramId: PublicKey,
-    ): Promise<boolean>;
+    ): Promise<PublicKey>;
   }
 
   // === src/bpf-loader-deprecated.js ===

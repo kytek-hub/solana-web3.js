@@ -3,17 +3,12 @@
 import BN from 'bn.js';
 import bs58 from 'bs58';
 import nacl from 'tweetnacl';
-import bitcoin from 'bitcoinjs-lib'
+const bitcoin = require('bitcoinjs-lib')
 
 //$FlowFixMe
 let naclLowLevel = nacl.lowlevel;
 
 type PublicKeyNonce = [PublicKey, number]; // This type exists to workaround an esdoc parse error
-
-/**
- * Maximum length of derived pubkey seed
- */
-export const MAX_SEED_LENGTH = 32;
 
 /**
  * A public key
@@ -102,9 +97,6 @@ export class PublicKey {
   ): Promise<PublicKey> {
     let buffer = Buffer.alloc(0);
     seeds.forEach(function (seed) {
-      if (seed.length > MAX_SEED_LENGTH) {
-        throw new Error(`Max seed length exceeded`);
-      }
       buffer = Buffer.concat([buffer, Buffer.from(seed)]);
     });
     buffer = Buffer.concat([

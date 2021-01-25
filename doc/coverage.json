@@ -1,21 +1,12 @@
 {
-  "coverage": "89.73%",
-  "expectCount": 380,
-  "actualCount": 341,
+  "coverage": "92.24%",
+  "expectCount": 348,
+  "actualCount": 321,
   "files": {
     "src/account.js": {
       "expectCount": 5,
       "actualCount": 5,
       "undocumentLines": []
-    },
-    "src/agent-manager.js": {
-      "expectCount": 10,
-      "actualCount": 7,
-      "undocumentLines": [
-        6,
-        8,
-        10
-      ]
     },
     "src/bpf-loader-deprecated.js": {
       "expectCount": 1,
@@ -32,16 +23,15 @@
       ]
     },
     "src/connection.js": {
-      "expectCount": 164,
-      "actualCount": 157,
+      "expectCount": 157,
+      "actualCount": 151,
       "undocumentLines": [
-        26,
-        262,
-        290,
-        318,
-        336,
-        367,
-        1367
+        24,
+        256,
+        282,
+        309,
+        327,
+        357
       ]
     },
     "src/fee-calculator.js": {
@@ -70,8 +60,8 @@
       "undocumentLines": []
     },
     "src/message.js": {
-      "expectCount": 10,
-      "actualCount": 9,
+      "expectCount": 11,
+      "actualCount": 10,
       "undocumentLines": [
         57
       ]
@@ -84,26 +74,13 @@
       ]
     },
     "src/publickey.js": {
-      "expectCount": 16,
-      "actualCount": 12,
+      "expectCount": 15,
+      "actualCount": 11,
       "undocumentLines": [
         9,
-        153,
-        197,
-        198
-      ]
-    },
-    "src/secp256k1-program.js": {
-      "expectCount": 11,
-      "actualCount": 4,
-      "undocumentLines": [
-        12,
-        14,
-        15,
-        16,
-        17,
-        45,
-        59
+        145,
+        189,
+        190
       ]
     },
     "src/stake-program.js": {
@@ -121,15 +98,14 @@
       "undocumentLines": []
     },
     "src/sysvar.js": {
-      "expectCount": 6,
+      "expectCount": 5,
       "actualCount": 0,
       "undocumentLines": [
         4,
         8,
         12,
         16,
-        20,
-        24
+        20
       ]
     },
     "src/timing.js": {
@@ -138,8 +114,8 @@
       "undocumentLines": []
     },
     "src/transaction.js": {
-      "expectCount": 35,
-      "actualCount": 34,
+      "expectCount": 32,
+      "actualCount": 31,
       "undocumentLines": [
         35
       ]
